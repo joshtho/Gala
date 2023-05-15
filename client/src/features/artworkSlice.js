@@ -14,16 +14,29 @@ const initialState = {
 const artworkSlice = createSlice({
     name: 'artwork',
     initialState,
-    reducers: {},
-    extraReducers: {
-        [fetchArtwork.pending](state) {
+    reducers: {
+        noUser: (state) => {
+            Object.assign(state, initialState)
+        }
+    },
+    extraReducers:
+    (builder) => {
+        builder
+        .addCase(fetchArtwork.pending, (state) => {
             state.status = "loading"
-        },
-        [fetchArtwork.fulfilled](state, action) {
+        })
+        .addCase(fetchArtwork.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = "idle"
-        }
+        })
+        // [fetchArtwork.pending](state) {
+        //     state.status = "loading"
+        // },
+        // [fetchArtwork.fulfilled](state, action) {
+        //     state.entities = action.payload
+        //     state.status = "idle"
+        // }
     }
 })
-
+export const {noUser} = artworkSlice.actions
 export default artworkSlice.reducer
