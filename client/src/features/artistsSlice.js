@@ -5,6 +5,15 @@ export const fetchArtists = createAsyncThunk("artists/fetchArtists", async funct
     .then(r => r.json())
     .then(state => state)
 })
+export const addNewArtist = createAsyncThunk("artists/addNewArtist", async function(formData) {
+    return fetch("/artists", {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(formData),
+})
+    .then(r => r.json())
+    .then(state => state)
+})
 
 const initialState = {
     entities: [],
@@ -20,7 +29,7 @@ const artistsSlice = createSlice({
         }
     },
     extraReducers:
-    (builder) => {
+    (builder) => (
         builder
         .addCase(fetchArtists.pending, (state) => {
             state.status = "loading"
@@ -29,7 +38,14 @@ const artistsSlice = createSlice({
             state.entities = action.payload
             state.status = "idle"
         })
-    }
+        .addCase(addNewArtist.pending, (state) => {
+            state.status = "loading"
+        })
+        .addCase(addNewArtist.fulfilled, (state, action) => {
+            state.entities.push(action.payload)
+            state.status = "idle"
+        })
+    )
 })
 export const {noUserArtists} = artistsSlice.actions
 export default artistsSlice.reducer

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
+
 export const fetchArtwork = createAsyncThunk("artwork/fetchArtwork", async function() {
     return fetch("/artworks")
     .then(r => r.json())

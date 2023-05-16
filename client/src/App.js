@@ -12,13 +12,11 @@ import { noUserArtworks } from './features/artworkSlice';
 import ArtistList from './components/artists/ArtistList';
 import { fetchArtists, noUserArtists } from './features/artistsSlice';
 import ArtworkList from './components/artworks/ArtworkList';
+import AddArtist from './components/artists/AddArtist';
 
 function App() {
   const user = useSelector(state => state.user.entities)
   const dispatch = useDispatch()
-  
-  
-  console.log(user)
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -43,6 +41,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/artists" element={<ArtistList />} />
+          <Route path="/artists/add" element={<AddArtist />} />
           <Route path="/artworks/:id" element={<ArtworkList />} />
         </Routes>
       </Router>
