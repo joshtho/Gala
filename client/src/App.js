@@ -11,6 +11,7 @@ import { fetchUser } from './features/sessionSlice';
 import { noUserArtworks } from './features/artworkSlice';
 import ArtistList from './components/artists/ArtistList';
 import { fetchArtists, noUserArtists } from './features/artistsSlice';
+import ArtworkList from './components/artworks/ArtworkList';
 
 function App() {
   const user = useSelector(state => state.user.entities)
@@ -29,7 +30,7 @@ function App() {
       dispatch(fetchArtists())
     } else {
       dispatch(noUserArtworks())
-      dispatch(noUserArtists)
+      dispatch(noUserArtists())
     }
   }, [user, dispatch])
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/artists" element={<ArtistList />} />
+          <Route path="/artworks" element={<ArtworkList />} />
         </Routes>
       </Router>
     </div>
