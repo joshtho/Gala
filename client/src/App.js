@@ -8,16 +8,15 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchArtwork } from './features/artworkSlice';
 import { fetchUser } from './features/sessionSlice';
-import { logoutUser } from './features/sessionSlice';
-import { noUser } from './features/artworkSlice';
-
+import { noUserArtworks } from './features/artworkSlice';
+import ArtistList from './components/artists/ArtistList';
+import { fetchArtists, noUserArtists } from './features/artistsSlice';
 
 function App() {
-  const artwork = useSelector(state => state.artwork.entities)
   const user = useSelector(state => state.user.entities)
   const dispatch = useDispatch()
   
-  console.log(artwork)
+  
   console.log(user)
 
   useEffect(() => {
@@ -27,24 +26,22 @@ function App() {
   useEffect(() => {
     if(user && user.id) {
       dispatch(fetchArtwork())
+      dispatch(fetchArtists())
     } else {
-      dispatch(noUser())
+      dispatch(noUserArtworks())
+      dispatch(noUserArtists)
     }
   }, [user, dispatch])
 
-  
-  function handleLogout() {
-    dispatch(logoutUser())
-  }
   return (
     <div className="App">
       <Router>
-        <NavBar user={user} onLogout={handleLogout} />
+        <NavBar user={user} />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
-          {/* <Route path="/artwork" element={<SignupPage />} /> */}
+          <Route path="/artists" element={<ArtistList />} />
         </Routes>
       </Router>
     </div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-export const fetchArtwork = createAsyncThunk("artwork/fetchArtwork", () => {
+export const fetchArtwork = createAsyncThunk("artwork/fetchArtwork", async function() {
     return fetch("/artworks")
     .then(r => r.json())
     .then(artworks => artworks)
@@ -15,7 +15,7 @@ const artworkSlice = createSlice({
     name: 'artwork',
     initialState,
     reducers: {
-        noUser: (state) => {
+        noUserArtworks: (state) => {
             Object.assign(state, initialState)
         }
     },
@@ -38,5 +38,5 @@ const artworkSlice = createSlice({
         // }
     }
 })
-export const {noUser} = artworkSlice.actions
+export const {noUserArtworks} = artworkSlice.actions
 export default artworkSlice.reducer

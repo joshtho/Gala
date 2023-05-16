@@ -1,15 +1,22 @@
 // import { useState } from 'react';
 import Button  from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { logoutUser } from '../../features/sessionSlice';
 
 
 
-function NavBar({user, onLogout}) {
-// const [loggedIn, setloggedIn] = useState(false)
+function NavBar({user}) {
+const dispatch = useDispatch()
+const navigate = useNavigate()
   
-  
-  return (
+function handleLogout() {
+    dispatch(logoutUser())
+    navigate("/")
+}
+    
+return (
     <>
     {user && user.id ?
     <Nav>
@@ -19,14 +26,14 @@ function NavBar({user, onLogout}) {
         </Link>
       </Nav.Item>
       <Nav.Item>
-        <Link to='/artwork'>
-          <Button>Artwork</Button>
+        <Link to='/artists'>
+          <Button>Artists</Button>
         </Link>
       </Nav.Item>
       <Nav.Item>
-        <Button onClick={onLogout}>Logout</Button>
+        <Button onClick={handleLogout}>Logout</Button>
       </Nav.Item>
-      Welcome 
+      Welcome {user.username}
     </Nav>
     :
     <Nav activeKey="/">
