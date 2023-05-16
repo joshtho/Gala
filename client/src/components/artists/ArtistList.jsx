@@ -18,7 +18,7 @@ function ArtistList() {
         "Loading..."   
         }
         <h2>Add a new artist</h2>
-        <Link to='add' >
+        <Link to={`add`} >
           <Button>Add a new artist</Button>
         </Link>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addNewArtist } from '../../features/artistsSlice'
 
@@ -14,16 +14,18 @@ function AddArtist() {
     image: '',
 
   })
-
+  const artists = useSelector(state => state.artists.entities)
+  
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(addNewArtist(formData))
-    navigate('/artwork/add')
+    const artistId = artists.map(artist => artist.id).length + 1
+    navigate(`/artworks/add/${artistId}`)
   }
   return (
     <div>
       <h1>Add a new artist</h1>
-      <Form>
+      <Form onSubmit={handleSubmit} >
         <Form.Group>
           <Form.Label>Artist's name</Form.Label>
             <Form.Control 
