@@ -13,7 +13,7 @@ function ArtistTile({artist}) {
         <Card.Text>
           {artist.description}
         </Card.Text>
-        <Link to="/artworks">
+        <Link to={`/artworks/${artist.id}`}>
               <Button>My collection</Button>
         </Link>
       </Card.Body>

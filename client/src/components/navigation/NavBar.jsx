@@ -1,15 +1,16 @@
 // import { useState } from 'react';
 import Button  from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../features/sessionSlice';
 
 
 
-function NavBar({user}) {
+function NavBar() {
 const dispatch = useDispatch()
 const navigate = useNavigate()
+const user = useSelector(state => state.user.entities)
   
 function handleLogout() {
     dispatch(logoutUser())

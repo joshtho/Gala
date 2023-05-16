@@ -37,13 +37,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar user={user} />
+        <NavBar />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/artists" element={<ArtistList />} />
-          <Route path="/artworks" element={<ArtworkList />} />
+          <Route path="/artworks/:id" element={<ArtworkList />} />
         </Routes>
       </Router>
     </div>
