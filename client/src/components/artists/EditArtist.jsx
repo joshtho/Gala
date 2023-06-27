@@ -2,41 +2,48 @@ import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { addNewArtist, resetArtistObj } from '../../features/artistsSlice'
-import { addArtistToUser } from '../../features/sessionSlice'
+import { useNavigate, useParams } from 'react-router-dom'
+import { resetArtistObj, updateArtist } from '../../features/artistsSlice'
+import { updateUserArtists } from '../../features/sessionSlice'
 
-function AddArtist() {
-  const dispatch = useDispatch()
+function EditArtist() {
+  const artists = useSelector(state => state.user.entities.artists)
+  const params = useParams()
   const navigate = useNavigate()
-  const initialObj = {
-    name: '',
-    description: '',
-    image: '',
-    
-  }
-  const [formData, setFormData] = useState(initialObj)
-  const artists = useSelector(state => state.artists.entities)
+  const artistId = parseInt(params.id)
+  const artistData = artists.find(artist => artist.id === artistId)
+  const [formData, setFormData] = useState({})
+  const dispatch = useDispatch()
   const obj = useSelector(state => state.artists.artistObj)
-  
-  function handleSubmit(e) {
-    e.preventDefault()
-    dispatch(addNewArtist(formData))
-  }
-    
+
   useEffect(() => {
-    if (obj) {
-      dispatch(addArtistToUser(obj))
-      const artistId = artists.map(artist => artist.id).length + 1
-      navigate(`/artworks/add/${artistId}`)
-      dispatch(resetArtistObj())
-      setFormData(initialObj)
+    setFormData(artistData)
+  },[artistData])
+    
+    function handleSubmit(e) {
+      e.preventDefault()
+      dispatch(updateArtist({formData, artistId}))
     }
-  },[obj])
+    useEffect(() => {
+      if (obj) {
+        dispatch(updateUserArtists(obj))
+        navigate('/artists')
+        dispatch(resetArtistObj())
+        setFormData({})
+      }
+    },[obj])
+
+    console.log(artistId)
+  console.log(artistData)
+  console.log(formData)
+    if (!formData) {
+      return <div>Loading.. </div>
+    }
 
   return (
     <div>
-      <h1>Add a new artist</h1>
+        <h1>Edit artist info</h1>
+        
       <Form onSubmit={handleSubmit} >
         <Form.Group>
           <Form.Label>Artist's name</Form.Label>
@@ -49,7 +56,9 @@ function AddArtist() {
         </Form.Group>
         <Form.Group>
           <Form.Label>Artist's description/summary</Form.Label>
-            <Form.Control 
+            <Form.Control
+            as={"textarea"}
+            rows={3} 
             type="text" 
             placeholder="Please add a short bio or summary..."
             value={formData.description}
@@ -65,10 +74,10 @@ function AddArtist() {
             onChange={(e) => setFormData({...formData, image: e.target.value})}
             />
         </Form.Group>
-        <Button onClick={handleSubmit} >Add artist</Button>
+        <Button onClick={handleSubmit} >Edit artist info</Button>
       </Form>
     </div>
   )
 }
 
-export default AddArtist
+export default EditArtist

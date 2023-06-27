@@ -9,12 +9,12 @@ class ArtworksController < ApplicationController
     end
 
     def create
-        artwork = Artwork.create!(artwork_params)
+        artwork = @current_user.artworks.create!(artwork_params)
         render json: artwork, status: :created
     end
 
     def update
-        artwork = Artwork.find(params[:id])
+        artwork = @current_user.artworks.find(params[:id])
         artwork.update!(artwork_params)
         render json: artwork, status: :accepted
     end
@@ -28,6 +28,6 @@ class ArtworksController < ApplicationController
     private 
 
     def artwork_params
-        params.permit(:title, :medium, :image, :location)
+        params.permit(:title, :medium, :image, :location, :artist_id)
     end
 end

@@ -1,8 +1,10 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/esm/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Link } from 'react-router-dom';
 function ArtworkTile({artwork}) {
-  console.log(artwork)
+  
   return (
     <div>
       <Card className='Artwork-Card'>
@@ -15,6 +17,9 @@ function ArtworkTile({artwork}) {
             <br></br>
             <ListGroup.Item>{artwork.medium}</ListGroup.Item>
           </ListGroup>
+          <Link to={`/artworks/edit/${artwork.id}`}>
+            <Button>Edit</Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>

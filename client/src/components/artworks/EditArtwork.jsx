@@ -1,46 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import Form from 'react-bootstrap/Form'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import Button from 'react-bootstrap/esm/Button'
-import { addNewArtwork, resetArtworkObj } from '../../features/artworkSlice'
-import { addArtworkToUser } from '../../features/sessionSlice'
+import React from 'react'
 
-function AddArtwork() {
-  const dispatch = useDispatch()
-  const artists = useSelector(state => state.artists.entities)
-  const params = useParams()
-  const artistId = parseInt(params.id)
-  const navigate = useNavigate()
-
-  const formObj = {
-    title: "",
-    image: "", 
-    medium: "", 
-    location: "", 
-    artist_id: artistId
-  }
-  const [formData, setFormData] = useState(formObj)
-  const obj = useSelector(state => state.artwork.artworkObj)
-  
-  function handleSubmit(e) {
-    e.preventDefault()
-    dispatch(addNewArtwork(formData))
-  }
-  
-  useEffect(() => {
-    if(obj) {
-      dispatch(addArtworkToUser(obj))
-      navigate(`/artworks/${artistId}`)
-      dispatch(resetArtworkObj())
-      setFormData(formObj)
-    }
-  },[obj])
-
+function EditArtwork() {
   return (
     <div>
-      <h1>Add an Art piece!</h1>
-        Artist:
+      <h1>Edit an Art piece!</h1>
+        {/* Artist:
       <Form.Select onChange={e => setFormData({...formData, artist_id: e.target.value})} value={artistId}>
         {artists.map(artist => (
           <option key={artist.id} value={artist.id} >{artist.name}</option>
@@ -84,9 +48,9 @@ function AddArtwork() {
           />
         </Form.Group>
         <Button onClick={handleSubmit}>Add art piece</Button>
-      </Form>
+      </Form> */}
     </div>
   )
 }
 
-export default AddArtwork
+export default EditArtwork

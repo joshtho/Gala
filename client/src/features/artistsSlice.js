@@ -14,9 +14,19 @@ export const addNewArtist = createAsyncThunk("artists/addNewArtist", async funct
     .then(r => r.json())
     .then(state => state)
 })
+export const updateArtist = createAsyncThunk("artists/updateArtist", async function ({formData, artistId}) {
+    return fetch(`/artists/${artistId}`, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(formData),
+    })
+    .then(r => r.json())
+    .then(state => state)
+})
 
 const initialState = {
     entities: [],
+    artistObj: null,
     status: "idle"
 }
 
@@ -26,6 +36,9 @@ const artistsSlice = createSlice({
     reducers: {
         noUserArtists: (state) => {
             Object.assign(state, initialState)
+        },
+        resetArtistObj: (state) => {
+            state.artistObj = null
         }
     },
     extraReducers:
@@ -43,9 +56,16 @@ const artistsSlice = createSlice({
         })
         .addCase(addNewArtist.fulfilled, (state, action) => {
             state.entities.push(action.payload)
+            state.artistObj = action.payload
             state.status = "idle"
+        })
+        .addCase(updateArtist.pending, state => {state.status = 'loading'})
+        .addCase(updateArtist.fulfilled, (state, action) => {
+            state.entities = state.entities.filter(artist => artist.id !== action.payload.id)
+            state.entities.push(action.payload)
+            state.artistObj = action.payload
         })
     )
 })
-export const {noUserArtists} = artistsSlice.actions
+export const {noUserArtists, resetArtistObj} = artistsSlice.actions
 export default artistsSlice.reducer

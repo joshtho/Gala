@@ -1,5 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username
+  attributes :id, :username, :artists
   has_many :artworks
-  has_many :artists
+  def artists 
+    self.object.artists.uniq
+  end
 end

@@ -8,19 +8,18 @@ import { Link } from 'react-router-dom'
 function ArtworkList() {
   const params = useParams()
   const artistId = parseInt(params.id)
-  const user = useSelector(state => state.user.entities)
-  const userArtworks = () => user.artworks.filter(artwork => artwork.artist.id === artistId)
-
+  const userArtworks = useSelector(state => state.user.entities.artworks)
+  const Artistworks = userArtworks.filter(artwork => artwork.artist.id === artistId)
+  
   return (
     <div>
       <Link to={`/artworks/add/${artistId}`}>
         <Button>Add more artwork from this artist</Button>
       </Link>
-      {user ?
-      userArtworks().map(artwork => (
+      {
+      Artistworks.map(artwork => (
         <ArtworkTile key={artwork.id} artwork={artwork} />
       ))
-      : "Loading"
       }
       
     </div>

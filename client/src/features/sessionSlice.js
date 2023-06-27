@@ -2,8 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async function() {
     return fetch("/me")
-    .then(r => r.json())
-    .then(state => state)
+    .then(r => {
+        if (r.ok) {
+        return r.json().then(state => state)
+    } else {
+        console.log(r.statusText)
+    }
+})
+   
 })
 
 export const loginUser = createAsyncThunk("user/loginUser", async function(loginData) {
@@ -27,7 +33,11 @@ export const signupUser = createAsyncThunk("user/signupUser", async function (si
 })
 
 const initialState = {
-    entities: null,
+    entities: {
+        artists: [],
+        artworks: []
+    },
+    loggedIn: false,
     status: "idle"
 }
 
@@ -37,47 +47,40 @@ const sessionSlice = createSlice({
     reducers: {
         logoutUser: (state) => {
             fetch('/logout', { method: "DELETE"})
-            state.entities = null
-            state.status = "idle"
-            // Object.assign(state, initialState)
+            Object.assign(state, initialState)
+        },
+        addArtistToUser: (state, action) => {
+            state.entities.artists.push(action.payload)
+        },
+        addArtworkToUser: (state, action) => {
+            state.entities.artworks.push(action.payload)
+        },
+        updateUserArtists: (state, action) => {
+            state.entities.artists = state.entities.artists.filter(artist => artist.id !== action.payload.id)
+            state.entities.artists.push(action.payload)
         }
     },
     extraReducers: 
         (builder) => {
             builder
-            .addCase(fetchUser.pending, (state) => {
-                state.status = "loading"
-            })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.entities = action.payload
+                action.payload ? state.loggedIn = true : state.loggedIn = false
                 state.status = "idle"
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.entities = action.payload
+                state.loggedIn = true
                 state.status = "idle"            
             })
             .addCase(signupUser.fulfilled, (state, action) => {
                 state.entities = action.payload
+                state.loggedIn = true
                 state.status = "idle"
             })
         }
-        
-        // [fetchUser.pending](state) {
-        //     state.status = "loading"
-        // },
-        // [fetchUser.fulfilled](state, action) {
-        //     state.entities = action.payload
-        //     state.status = "idle"
-        // },
-        // [loginUser.pending](state) {
-        //     state.status = "loading"
-        // },
-        // [loginUser.fulfilled](state, action) {
-        //     state.entities = action.payload
-        //     state.status = "idle"
-        // }
 
     
 })
-export const {logoutUser} = sessionSlice.actions
+export const {logoutUser, addArtworkToUser, addArtistToUser, updateUserArtists} = sessionSlice.actions
 export default sessionSlice.reducer

@@ -4,12 +4,23 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 export const fetchArtwork = createAsyncThunk("artwork/fetchArtwork", async function() {
     return fetch("/artworks")
     .then(r => r.json())
-    .then(artworks => artworks)
+    .then(state => state)
+})
+
+export const addNewArtwork = createAsyncThunk("artwork/addNewArtwork", async function(formData) {
+    return fetch("/artworks", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(formData)
+    })
+    .then(r => r.json())
+    .then(state => state)
 })
 
 const initialState = {
     entities: [],
-    status: "idle"
+    artworkObj: null,
+    status: "idle",
 }
 
 const artworkSlice = createSlice({
@@ -18,6 +29,9 @@ const artworkSlice = createSlice({
     reducers: {
         noUserArtworks: (state) => {
             Object.assign(state, initialState)
+        },
+        resetArtworkObj: (state) => {
+            state.artworkObj = null
         }
     },
     extraReducers:
@@ -30,14 +44,16 @@ const artworkSlice = createSlice({
             state.entities = action.payload
             state.status = "idle"
         })
-        // [fetchArtwork.pending](state) {
-        //     state.status = "loading"
-        // },
-        // [fetchArtwork.fulfilled](state, action) {
-        //     state.entities = action.payload
-        //     state.status = "idle"
-        // }
+        .addCase(addNewArtwork.pending, (state) => {
+            state.status = "loading"
+        })
+        .addCase(addNewArtwork.fulfilled, (state, action) => {
+            state.entities.push(action.payload)
+            state.artworkObj = action.payload
+            state.status = "idle"
+        })
     }
 })
-export const {noUserArtworks} = artworkSlice.actions
+
+export const {noUserArtworks, resetArtworkObj} = artworkSlice.actions
 export default artworkSlice.reducer
