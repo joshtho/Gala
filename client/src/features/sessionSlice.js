@@ -58,6 +58,10 @@ const sessionSlice = createSlice({
         updateUserArtists: (state, action) => {
             state.entities.artists = state.entities.artists.filter(artist => artist.id !== action.payload.id)
             state.entities.artists.push(action.payload)
+        },
+        updateUserArtwork: (state, action) => {
+            state.entities.artworks = state.entities.artworks.filter(artist => artist.id !== action.payload.id)
+            state.entities.artworks.push(action.payload)
         }
     },
     extraReducers: 
@@ -82,5 +86,11 @@ const sessionSlice = createSlice({
 
     
 })
-export const {logoutUser, addArtworkToUser, addArtistToUser, updateUserArtists} = sessionSlice.actions
+export const {
+    logoutUser, 
+    addArtworkToUser, 
+    addArtistToUser, 
+    updateUserArtists,
+    updateUserArtwork
+} = sessionSlice.actions
 export default sessionSlice.reducer

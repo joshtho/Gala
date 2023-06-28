@@ -1,15 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import { resetArtworkObj, updateArtwork } from '../../features/artworkSlice'
+import { updateUserArtwork } from '../../features/sessionSlice'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/esm/Button'
 
 function EditArtwork() {
+    const artworks = useSelector(state => state.user.entities.artworks)
+    const params = useParams()
+    const navigate = useNavigate()
+    const artworkId = parseInt(params.id)
+    const artworkData = artworks.find(artwork => artwork.id === artworkId)
+    const [formData, setFormData] = useState(null)
+    const dispatch = useDispatch()
+    const obj = useSelector(state => state.artwork.artworkObj)
+
+    useEffect(() => {
+        setFormData(artworkData)
+      },[artworkData])
+        
+    function handleSubmit(e) {
+        e.preventDefault()
+        dispatch(updateArtwork({formData, artworkId}))
+    }
+        
+    useEffect(() => {
+        if (obj) {
+            dispatch(updateUserArtwork(obj))
+            navigate(`/artworks/${formData.artist.id}`)
+            dispatch(resetArtworkObj())
+            setFormData(null)
+        }
+    },[obj])
+
+    console.log(artworks)
+    console.log(artworkData)
+
+    if (!formData) {
+        return <div>Loading.. </div>
+      }
   return (
     <div>
       <h1>Edit an Art piece!</h1>
-        {/* Artist:
-      <Form.Select onChange={e => setFormData({...formData, artist_id: e.target.value})} value={artistId}>
+        Artist: {formData.artist.name}
+      {/* <Form.Select onChange={e => setFormData({...formData, artist_id: e.target.value})} value={artistId}>
         {artists.map(artist => (
           <option key={artist.id} value={artist.id} >{artist.name}</option>
         ))}
-      </Form.Select>
+      </Form.Select> */}
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title of work</Form.Label>
@@ -48,7 +87,7 @@ function EditArtwork() {
           />
         </Form.Group>
         <Button onClick={handleSubmit}>Add art piece</Button>
-      </Form> */}
+      </Form>
     </div>
   )
 }

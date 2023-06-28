@@ -6,15 +6,14 @@ import { Link } from 'react-router-dom';
 function ArtworkTile({artwork}) {
   
   return (
-    <div>
-      <Card className='Artwork-Card'>
+      <Card style={{ width: '18rem' }}>
         <h2>{artwork.title}</h2>
         <Card.Img variant="top" src={`${artwork.image}`} />
         <Card.Body>
           <ListGroup variant="flush">
-            <h5>Current Location:</h5>
+            <h6>Current Location:</h6>
             <ListGroup.Item>{artwork.location}</ListGroup.Item>
-            <br></br>
+            <h6>Medium:</h6>
             <ListGroup.Item>{artwork.medium}</ListGroup.Item>
           </ListGroup>
           <Link to={`/artworks/edit/${artwork.id}`}>
@@ -22,7 +21,6 @@ function ArtworkTile({artwork}) {
           </Link>
         </Card.Body>
       </Card>
-    </div>
   )
 }
 

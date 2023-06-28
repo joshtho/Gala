@@ -27,7 +27,7 @@ function AddArtist() {
   useEffect(() => {
     if (obj) {
       dispatch(addArtistToUser(obj))
-      const artistId = artists.map(artist => artist.id).length + 1
+      const artistId = artists.map(artist => artist.id).length
       navigate(`/artworks/add/${artistId}`)
       dispatch(resetArtistObj())
       setFormData(initialObj)

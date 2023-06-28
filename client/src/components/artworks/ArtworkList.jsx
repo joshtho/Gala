@@ -16,11 +16,11 @@ function ArtworkList() {
       <Link to={`/artworks/add/${artistId}`}>
         <Button>Add more artwork from this artist</Button>
       </Link>
-      {
-      Artistworks.map(artwork => (
+      {Artistworks.map(artwork => (
         <ArtworkTile key={artwork.id} artwork={artwork} />
       ))
       }
+        
       
     </div>
   )

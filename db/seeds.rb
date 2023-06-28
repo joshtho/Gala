@@ -69,3 +69,17 @@ persistence = Artwork.create(
     }
 )
 
+note1 = Note.create({
+    body: "Got this print in paris when I was visiting the louvre, Seemed appropriate!",
+    artwork_id: mona_lisa1.id
+})
+
+note2 = Note.create({
+    body: "I got this print at recycled books",
+    artwork_id: mona_lisa2.id
+})
+note3 = Note.create({
+    body: "I got also this print at recycled books",
+    artwork_id: persistence.id
+})
+

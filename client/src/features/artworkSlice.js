@@ -17,6 +17,16 @@ export const addNewArtwork = createAsyncThunk("artwork/addNewArtwork", async fun
     .then(state => state)
 })
 
+export const updateArtwork = createAsyncThunk("artwork/updateArtwork", async function ({formData, artworkId}) {
+    return fetch(`/artworks/${artworkId}`, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(formData),
+    })
+    .then(r => r.json())
+    .then(state => state)
+})
+
 const initialState = {
     entities: [],
     artworkObj: null,
@@ -51,6 +61,11 @@ const artworkSlice = createSlice({
             state.entities.push(action.payload)
             state.artworkObj = action.payload
             state.status = "idle"
+        })
+        .addCase(updateArtwork.fulfilled, (state, action) => {
+            state.entities = state.entities.filter(artwork => artwork.id !== action.payload.id)
+            state.entities.push(action.payload)
+            state.artworkObj = action.payload
         })
     }
 })

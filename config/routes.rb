@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :notes
   resources :artists
   resources :artworks
 
-  get "/users", to: "users#index"
+  
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"

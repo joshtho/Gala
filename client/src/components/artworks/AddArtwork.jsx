@@ -12,7 +12,8 @@ function AddArtwork() {
   const params = useParams()
   const artistId = parseInt(params.id)
   const navigate = useNavigate()
-
+  console.log(artistId)
+  console.log(artists)
   const formObj = {
     title: "",
     image: "", 
