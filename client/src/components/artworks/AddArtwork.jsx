@@ -21,6 +21,11 @@ function AddArtwork() {
     location: "", 
     artist_id: artistId
   }
+
+  const noteObj = {
+    body: ""
+  }
+  const [noteData, setNoteData] = useState(noteObj)
   const [formData, setFormData] = useState(formObj)
   const obj = useSelector(state => state.artwork.artworkObj)
   
@@ -82,6 +87,15 @@ function AddArtwork() {
             placeholder="Artwork is currently located..."
             value={formData.location}
             onChange={(e) => setFormData({...formData, location: e.target.value})}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Notes</Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="How did you find this?"
+            value={noteData.body}
+            onChange={(e) => setNoteData({...noteData, body: e.target.value})}
           />
         </Form.Group>
         <Button onClick={handleSubmit}>Add art piece</Button>

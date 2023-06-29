@@ -35,7 +35,8 @@ export const signupUser = createAsyncThunk("user/signupUser", async function (si
 const initialState = {
     entities: {
         artists: [],
-        artworks: []
+        artworks: [],
+        notes: []
     },
     loggedIn: false,
     status: "idle"

@@ -27,10 +27,8 @@ function App() {
   
   useEffect(() => {
     if(loggedIn) {
-      dispatch(fetchArtwork())
       dispatch(fetchArtists())
     } else {
-      dispatch(noUserArtworks())
       dispatch(noUserArtists())
     }
   }, [loggedIn])

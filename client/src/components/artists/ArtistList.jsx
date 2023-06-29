@@ -6,7 +6,9 @@ import Button from 'react-bootstrap/esm/Button'
 
 function ArtistList() {
   const user = useSelector(state => state.user.entities)
+
   console.log(user)
+
   return (
     <div>
         <h1>My Artists</h1>
