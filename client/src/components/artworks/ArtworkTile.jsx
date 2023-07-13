@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/esm/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ArtworkNote from './ArtworkNote';
 function ArtworkTile({artwork}) {
   const notes = useSelector(state => state.user.entities.notes)
   const artworkNotes = notes.filter(note => note.artwork.id === artwork.id)
@@ -23,9 +24,7 @@ function ArtworkTile({artwork}) {
             <Button>Edit</Button>
           </Link>
         {artworkNotes.map(note => (
-          <>
-            <h6>{note.body}</h6>
-          </>
+          <ArtworkNote key={note.id} note={note}/>
         )) }
         </Card.Body>
       </Card>

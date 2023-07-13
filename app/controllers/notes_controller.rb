@@ -11,11 +11,11 @@ class NotesController < ApplicationController
         render json: artwork, status: :accepted
     end
 
-    def destroy
-        note = Note.find_by(id: params[:id])
-        note.destroy
-        head :no_content
-    end
+    # def destroy
+    #     note = Note.find_by(id: params[:id])
+    #     note.destroy
+    #     head :no_content
+    # end
     
     private
         

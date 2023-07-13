@@ -39,7 +39,8 @@ const artistsSlice = createSlice({
         },
         resetArtistObj: (state) => {
             state.artistObj = null
-        }
+        },
+       
     },
     extraReducers:
     (builder) => (
