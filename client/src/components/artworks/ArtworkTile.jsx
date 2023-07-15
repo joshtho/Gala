@@ -5,16 +5,22 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ArtworkNote from './ArtworkNote';
+
 function ArtworkTile({artwork}) {
   const notes = useSelector(state => state.user.entities.notes)
-  const artworkNotes = notes.filter(note => note.artwork.id === artwork.id)
-  console.log(artworkNotes)
+  const artworkNote = notes.find(note => note.artwork.id === artwork.id)
+  // probably have to use useffect on notes in this component or Addartwork
+  console.log(notes)
+  console.log(artworkNote)
+  if (!artworkNote) {
+    return "loading.."
+  }
   return (
-      <Card style={{ width: '18rem' }}>
+    <Card className='Artwork-Card'>
         <h2>{artwork.title}</h2>
-        <Card.Img variant="top" src={`${artwork.image}`} />
+        <Card.Img variant="top" src={artwork.image} />
         <Card.Body>
-          <ListGroup variant="flush">
+          <ListGroup >
             <h6>Current Location:</h6>
             <ListGroup.Item>{artwork.location}</ListGroup.Item>
             <h6>Medium:</h6>
@@ -23,9 +29,9 @@ function ArtworkTile({artwork}) {
           <Link to={`/artworks/edit/${artwork.id}`}>
             <Button>Edit</Button>
           </Link>
-        {artworkNotes.map(note => (
-          <ArtworkNote key={note.id} note={note}/>
-        )) }
+        { 
+          <ArtworkNote note={artworkNote}/>
+        }       
         </Card.Body>
       </Card>
   )

@@ -5,7 +5,7 @@ import { resetArtworkObj, updateArtwork } from '../../features/artworkSlice'
 import { updateUserArtwork } from '../../features/sessionSlice'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
-import { editNote } from '../../features/noteSlice'
+import { updateNote } from '../../features/noteSlice'
 
 function EditArtwork() {
     const artworks = useSelector(state => state.user.entities.artworks)
@@ -14,23 +14,22 @@ function EditArtwork() {
     const navigate = useNavigate()
     const artworkId = parseInt(params.id)
     const artworkData = artworks.find(artwork => artwork.id === artworkId)
-    const currentNotes = notes.find(note => note.artwork.id === artworkId)
+    // const currentNotes = notes.find(note => note.artwork.id === artworkId)
     const [formData, setFormData] = useState(null)
-    const [noteData, setNoteData] = useState(null)
+    // const [noteData, setNoteData] = useState(null)
     const dispatch = useDispatch()
     const obj = useSelector(state => state.artwork.artworkObj)
 
     useEffect(() => {
         setFormData(artworkData)
       },[artworkData])
-    useEffect(() => {
-        setNoteData(currentNotes)
-      },[currentNotes])
+    // useEffect(() => {
+    //     setNoteData(currentNotes)
+    //   },[currentNotes])
         
     function handleSubmit(e) {
         e.preventDefault()
         dispatch(updateArtwork({formData, artworkId}))
-        dispatch(editNote({noteData}))
     }
         
     useEffect(() => {
@@ -41,10 +40,6 @@ function EditArtwork() {
             setFormData(null)
         }
     },[obj])
-
-    
-    console.log(notes)
-    console.log(noteData)
 
     if (!formData) {
         return <div>Loading.. </div>
@@ -95,7 +90,7 @@ function EditArtwork() {
             onChange={(e) => setFormData({...formData, location: e.target.value})}
           />
         </Form.Group>
-        <Form.Group>
+        {/* <Form.Group>
           <Form.Label>Notes</Form.Label>
           <Form.Control 
             type="text" 
@@ -103,8 +98,8 @@ function EditArtwork() {
             value={noteData.body}
             onChange={(e) => setNoteData({...noteData, body: e.target.value})}
           />
-        </Form.Group>
-        <Button onClick={handleSubmit}>Add art piece</Button>
+        </Form.Group> */}
+        <Button onClick={handleSubmit}>Edit art piece</Button>
       </Form>
     </div>
   )

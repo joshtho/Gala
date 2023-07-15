@@ -15,7 +15,7 @@ export const addNote = createAsyncThunk("notes/addNote", async function (noteDat
     .then(r => r.json())
     .then(state => state)
 })
-export const editNote = createAsyncThunk("notes/editNote", async function ({noteData}) {
+export const updateNote = createAsyncThunk("notes/editNote", async function (noteData) {
     return fetch(`/notes/${noteData.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
@@ -28,6 +28,7 @@ export const editNote = createAsyncThunk("notes/editNote", async function ({note
 const initialState = {
     entities: [],
     noteObj: null,
+    editNote: false,
     status: 'idle'
 }
 
@@ -41,16 +42,23 @@ const noteSlice = createSlice({
         deleteNote: (state, id) => {
             fetch(`/notes/${id}`, {method: 'DELETE'})
             state.entities = state.entities.filter(note => note.id !== id)
+        },
+        toggleNoteEdit: (state) => {
+            state.editNote = !state.editNote
         }
     },
 
     extraReducers: (builder) => {
         builder
+        .addCase(fetchNotes.fulfilled, (state, action) => {
+            state.entities = action.payload
+            state.status = 'idle'
+        })
         .addCase(addNote.fulfilled, (state, action) => {
             state.entities.push(action.payload)
             state.noteObj = action.payload
         })
-        .addCase(editNote.fulfilled, (state, action) => {
+        .addCase(updateNote.fulfilled, (state, action) => {
             state.entities = state.entities.filter(note => action.payload.id !== note.id)
             state.entities.push(action.payload)
             state.noteObj = action.payload
@@ -58,5 +66,5 @@ const noteSlice = createSlice({
     }
 })
 
-export const {resetNoteObj, deleteNote} = noteSlice.actions
+export const {resetNoteObj, deleteNote, toggleNoteEdit} = noteSlice.actions
 export default noteSlice.reducer

@@ -36,7 +36,6 @@ const initialState = {
     entities: {
         artists: [],
         artworks: [],
-        notes: []
     },
     loggedIn: false,
     status: "idle"
@@ -55,6 +54,9 @@ const sessionSlice = createSlice({
         },
         addArtworkToUser: (state, action) => {
             state.entities.artworks.push(action.payload)
+        },
+        addNoteToUser: (state, action) => {
+            state.entities.notes.push(action.payload)
         },
         updateUserArtists: (state, action) => {
             state.entities.artists = state.entities.artists.filter(artist => artist.id !== action.payload.id)
@@ -92,6 +94,7 @@ export const {
     addArtworkToUser, 
     addArtistToUser, 
     updateUserArtists,
-    updateUserArtwork
+    updateUserArtwork,
+    addNoteToUser
 } = sessionSlice.actions
 export default sessionSlice.reducer

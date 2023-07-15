@@ -15,6 +15,7 @@ import AddArtist from './components/artists/AddArtist';
 import AddArtwork from './components/artworks/AddArtwork';
 import EditArtist from './components/artists/EditArtist';
 import EditArtwork from './components/artworks/EditArtwork';
+import { fetchNotes } from './features/noteSlice';
 
 function App() {
   const loggedIn = useSelector(state => state.user.loggedIn)
@@ -28,6 +29,7 @@ function App() {
   useEffect(() => {
     if(loggedIn) {
       dispatch(fetchArtists())
+      dispatch(fetchNotes())
     } else {
       dispatch(noUserArtists())
     }

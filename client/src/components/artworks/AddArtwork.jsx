@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
 import { addNewArtwork, resetArtworkObj } from '../../features/artworkSlice'
-import { addArtworkToUser } from '../../features/sessionSlice'
+import { addArtworkToUser, addNoteToUser } from '../../features/sessionSlice'
+import { addNote, resetNoteObj } from '../../features/noteSlice'
 
 function AddArtwork() {
   const dispatch = useDispatch()
@@ -12,8 +13,7 @@ function AddArtwork() {
   const params = useParams()
   const artistId = parseInt(params.id)
   const navigate = useNavigate()
-  console.log(artistId)
-  console.log(artists)
+  
   const formObj = {
     title: "",
     image: "", 
@@ -21,13 +21,9 @@ function AddArtwork() {
     location: "", 
     artist_id: artistId
   }
-
-  const noteObj = {
-    body: ""
-  }
-  const [noteData, setNoteData] = useState(noteObj)
   const [formData, setFormData] = useState(formObj)
-  const obj = useSelector(state => state.artwork.artworkObj)
+  const newArt = useSelector(state => state.artwork.artworkObj)
+  const newNote = useSelector(state => state.notes.noteObj)
   
   function handleSubmit(e) {
     e.preventDefault()
@@ -35,13 +31,26 @@ function AddArtwork() {
   }
   
   useEffect(() => {
-    if(obj) {
-      dispatch(addArtworkToUser(obj))
-      navigate(`/artworks/${artistId}`)
+    if(newArt) {
+      const blankNote = {
+        body: "",
+        artwork_id: newArt.id
+      }
+      dispatch(addNote(blankNote))
+      dispatch(addArtworkToUser(newArt))
       dispatch(resetArtworkObj())
       setFormData(formObj)
+    } 
+    
+  },[newArt])
+  
+  useEffect(() => {
+    if(newNote) {
+      dispatch(addNoteToUser(newNote))
+      navigate(`/artworks/${artistId}`)
+      dispatch(resetNoteObj())
     }
-  },[obj])
+  },[newNote])
 
   return (
     <div>
@@ -89,7 +98,7 @@ function AddArtwork() {
             onChange={(e) => setFormData({...formData, location: e.target.value})}
           />
         </Form.Group>
-        <Form.Group>
+        {/* <Form.Group>
           <Form.Label>Notes</Form.Label>
           <Form.Control 
             type="text" 
@@ -97,7 +106,7 @@ function AddArtwork() {
             value={noteData.body}
             onChange={(e) => setNoteData({...noteData, body: e.target.value})}
           />
-        </Form.Group>
+        </Form.Group> */}
         <Button onClick={handleSubmit}>Add art piece</Button>
       </Form>
     </div>
