@@ -16,7 +16,7 @@ function ArtworkTile({artwork}) {
     return "loading.."
   }
   return (
-    <Card className='Artwork-Card'>
+    <Card className='card'>
         <h2>{artwork.title}</h2>
         <Card.Img variant="top" src={artwork.image} />
         <Card.Body>

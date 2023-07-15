@@ -10,8 +10,8 @@ function ArtistList() {
   console.log(user)
 
   return (
-    <div>
-        <h1>My Artists</h1>
+    <div className='card-grid' >
+      <h1>My Artists</h1>
         { user ?
         user.artists.map(artist => (
             <ArtistTile key={artist.id} artist={artist} />

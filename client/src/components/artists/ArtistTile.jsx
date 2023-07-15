@@ -6,7 +6,7 @@ function ArtistTile({artist}) {
 
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className='card'>
       <Card.Img variant="top" src={artist.image} />
       <Card.Body>
         <Card.Title>{artist.name}</Card.Title>

@@ -12,17 +12,19 @@ function ArtworkList() {
   const Artistworks = userArtworks.filter(artwork => artwork.artist.id === artistId)
   
   return (
-    <div>
-      <Link to={`/artworks/add/${artistId}`}>
-        <Button>Add more artwork from this artist</Button>
-      </Link>
+    <div className='card-grid' >
       {Artistworks.map(artwork => (
         <ArtworkTile key={artwork.id} artwork={artwork} />
       ))
       }
+    <div>
+      <Link to={`/artworks/add/${artistId}`}>
+        <Button>Add more artwork from this artist</Button>
+      </Link>
+    </div>
+    </div>
         
       
-    </div>
   )
 }
 
