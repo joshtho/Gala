@@ -1,47 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../features/sessionSlice';
+import { clearSessionErrors, loginUser } from '../../features/sessionSlice';
 import Container from 'react-bootstrap/esm/Container';
 
 function LoginPage() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const loggedIn = useSelector(state => state.user.loggedIn)
+    const errors = useSelector(state => state.user.errors)
     const [loginData, setLoginData] = useState({
         username: "",
         password: ""
     })
-    // // const [errors, setErrors] = useState([])
-
-    // function handleLoginSubmit(e) {
-    //     e.preventDefault()
-
-    //     fetch(`/login`, {
-    //         method: 'POST',
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(loginData),
-    //     })
-    //     .then((r) => {
-    //         if (r.ok) {
-    //           r.json().then(login => {
-    //             setUser(login)
-    //             setLoggedIn(true)
-    //             navigate('/')
-    //         })
-    //         } else {
-    //           r.json().then((err) => setErrors(err.errors));
-    //         }
-    //       })
-    // }
+    console.log(loggedIn)
     function handleLoginSubmit(e) {
       e.preventDefault()
       dispatch(loginUser(loginData, dispatch))
-      navigate('/')
     }
+
+    useEffect(() => {
+      if (loggedIn) {
+        navigate('/')
+        dispatch(clearSessionErrors())
+      }
+    },[loggedIn])
 
   return (
     <Container>
@@ -73,13 +58,10 @@ function LoginPage() {
   <Button variant="primary" type="submit">
     Submit
   </Button>
-  {/* {
-    errors ? 
-    errors.map(error => (
-      <li>{error}</li>
-      ))
-      : null
-    } */}
+  {errors ? 
+  errors.map((error, index) => 
+  (<p key={index} style={{color: "red"}}>{error}</p>))
+  : ""}
 </Form>
     </Container>
   );

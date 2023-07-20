@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async function() {
     return fetch("/me")
-    .then(r => {
-        if (r.ok) {
-        return r.json().then(state => state)
-    } else {
-        console.log(r.statusText)
-    }
-})
+    .then(r => r.json())
+    .then(state => state)
+//     .then(r => {
+//         if (r.ok) {
+//         return r.json().then(state => state)
+//     } 
+// })
    
 })
 
@@ -39,6 +39,7 @@ const initialState = {
         notes: []
     },
     loggedIn: false,
+    errors: null,
     status: "idle"
 }
 
@@ -49,6 +50,9 @@ const sessionSlice = createSlice({
         logoutUser: (state) => {
             fetch('/logout', { method: "DELETE"})
             Object.assign(state, initialState)
+        },
+        clearSessionErrors: (state) => {
+            state.errors = null
         },
         addArtistToUser: (state, action) => {
             state.entities.artists.push(action.payload)
@@ -76,26 +80,44 @@ const sessionSlice = createSlice({
         (builder) => {
             builder
             .addCase(fetchUser.fulfilled, (state, action) => {
-                state.entities = action.payload
-                action.payload ? state.loggedIn = true : state.loggedIn = false
-                state.status = "idle"
+                if (action.payload.errors) {
+                    state.status = "idle"
+                } else {
+                    state.entities = action.payload
+                    action.payload ? state.loggedIn = true : state.loggedIn = false
+                    state.status = "idle"
+                }
             })
+
             .addCase(loginUser.fulfilled, (state, action) => {
-                state.entities = action.payload
-                state.loggedIn = true
-                state.status = "idle"            
+                if (action.payload.errors) {
+                    state.errors = action.payload.errors
+                    state.status = "idle"
+                } else {
+                    state.entities = action.payload
+                    state.loggedIn = true
+                    state.status = "idle"            
+                }
+
             })
             .addCase(signupUser.fulfilled, (state, action) => {
-                state.entities = action.payload
-                state.loggedIn = true
-                state.status = "idle"
+                if (action.payload.errors) {
+                    state.errors = action.payload.errors
+                    state.status = "idle"
+                } else {
+                    state.entities = action.payload
+                    state.loggedIn = true
+                    state.status = "idle"
+                }
+
             })
         }
 
     
 })
 export const {
-    logoutUser, 
+    logoutUser,
+    clearSessionErrors, 
     addArtworkToUser, 
     addArtistToUser,
     addNoteToUser, 

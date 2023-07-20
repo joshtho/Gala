@@ -51,7 +51,8 @@
   background: white;
   border-radius: .25rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 2);
-  color: #222
+  color: #222;
+  flex: 0 0 100%;
 }
 
 .card-grid {
@@ -72,4 +73,10 @@
 .button:hover {
   text-transform: uppercase;
   color: darkred;
+}
+
+.card-wrap {
+  flex: 0 0 33.333%;
+  display: flex;
+  padding: 10px; /* gutter width */
 }

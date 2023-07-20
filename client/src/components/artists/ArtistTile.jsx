@@ -1,11 +1,14 @@
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/esm/Container';
 
 function ArtistTile({artist}) {
 
 
   return (
+    <Container className='card-wrap'>
+
     <Card className='card'>
       <Card.Img variant="top" src={artist.image} />
       <Card.Body>
@@ -13,7 +16,7 @@ function ArtistTile({artist}) {
         <Card.Text>
           {artist.description}
         </Card.Text>
-              {/* <Button>My collection</Button> */}
+ 
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           Select
@@ -26,13 +29,11 @@ function ArtistTile({artist}) {
         <Link to={`/artists/edit/${artist.id}`}>
           <Dropdown.Item href='#/action-2'>Edit info</Dropdown.Item>
         </Link>
-        
-          {/* <Dropdown.Item href="#/action-3">Edit artist info</Dropdown.Item> */}
-          {/* <Dropdown.Item href="#/action-2">Learn more about them</Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>
       </Card.Body>
     </Card>
+    </Container>
   );
 }
 

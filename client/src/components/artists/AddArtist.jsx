@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/esm/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addNewArtist, clearArtistErrors, resetArtistObj } from '../../features/artistsSlice'
@@ -39,6 +40,8 @@ function AddArtist() {
   return (
     <div>
       <h1>Add a new artist</h1>
+      <Container>
+
       <Form onSubmit={handleSubmit} >
         <Form.Group>
           <Form.Label>Artist's name</Form.Label>
@@ -71,6 +74,7 @@ function AddArtist() {
       </Form>
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
       
+            </Container>
     </div>
   )
 }
