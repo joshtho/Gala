@@ -38,6 +38,12 @@ function EditArtwork() {
     }
   },[editedArtwork])
 
+  useEffect(() => {
+    if(errors) {
+      setTimeout(() => dispatch(clearArtworkErrors()), 3000)
+    }
+  },[errors])
+
   if (!formData) {
     return <div>Loading.. </div>
   }

@@ -37,6 +37,12 @@ function AddArtist() {
     }
   },[newArtist])
 
+  useEffect(() => {
+    if(errors) {
+      setTimeout(() => dispatch(clearArtistErrors()),3000)
+    }
+  },[errors])
+
   return (
     <div>
       <h1>Add a new artist</h1>

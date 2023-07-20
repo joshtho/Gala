@@ -28,6 +28,12 @@ function LoginPage() {
       }
     },[loggedIn])
 
+    useEffect(() => {
+      if(errors) {
+        setTimeout(() => dispatch(clearSessionErrors()),3000)
+      }
+    },[errors])
+
   return (
     <Container>
 

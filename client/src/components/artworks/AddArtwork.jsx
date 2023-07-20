@@ -57,6 +57,12 @@ function AddArtwork() {
     }
   },[newNote])
 
+  useEffect(() => {
+    if(errors) {
+      setTimeout(() => dispatch(clearArtworkErrors()),3000)
+    }
+  },[errors])
+
   return (
     <div>
       <h1>Add an Art piece!</h1>

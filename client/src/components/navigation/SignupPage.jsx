@@ -1,47 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { signupUser } from '../../features/sessionSlice';
+import { clearSessionErrors, signupUser } from '../../features/sessionSlice';
 
 function SignupPage() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const errors = useSelector(state => state.user.errors)
+    const loggedIn = useSelector(state => state.user.loggedIn)
     const [loginData, setLoginData] = useState({
         username: "",
         password: ""
     })
-    // // const [errors, setErrors] = useState([])
 
-    // function handleLoginSubmit(e) {
-    //     e.preventDefault()
-
-    //     fetch(`/login`, {
-    //         method: 'POST',
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(loginData),
-    //     })
-    //     .then((r) => {
-    //         if (r.ok) {
-    //           r.json().then(login => {
-    //             setUser(login)
-    //             setLoggedIn(true)
-    //             navigate('/')
-    //         })
-    //         } else {
-    //           r.json().then((err) => setErrors(err.errors));
-    //         }
-    //       })
-    // }
     function handleSignupSubmit(e) {
       e.preventDefault()
       dispatch(signupUser(loginData))
-      navigate('/')
     }
+    
+    useEffect(() => {
+      if(loggedIn) {
+        navigate('/')
+        dispatch(clearSessionErrors())
+      }
+    },[loggedIn])
+
+    useEffect(() => {
+      if(errors) {
+        setTimeout(() => dispatch(clearSessionErrors()),3000)
+      }
+    },[errors])
+
 
   return (
     <Container>
@@ -73,14 +65,11 @@ function SignupPage() {
   <Button variant="primary" type="submit">
     Submit
   </Button>
-  {/* {
-    errors ? 
-    errors.map(error => (
-      <li>{error}</li>
-      ))
-      : null
-    } */}
 </Form>
+  {errors ? 
+  errors.map((error, index) => 
+  (<p key={index} style={{color: "red"}}>{error}</p>))
+  : ""}
     </Container>
   );
 }

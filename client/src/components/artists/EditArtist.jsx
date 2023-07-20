@@ -37,10 +37,12 @@ function EditArtist() {
       }
     },[editedArtist])
 
-    console.log(artistId)
-  console.log(artistData)
-  console.log(formData)
-  
+    useEffect(() => {
+      if(errors) {
+        setTimeout(() => dispatch(clearArtistErrors()),3000)
+      }
+    },[errors])
+
     if (!formData) {
       return <div>Loading.. </div>
     }
