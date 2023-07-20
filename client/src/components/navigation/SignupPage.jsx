@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/esm/Container';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signupUser } from '../../features/sessionSlice';
@@ -43,6 +44,8 @@ function SignupPage() {
     }
 
   return (
+    <Container>
+
   <Form onSubmit={handleSignupSubmit} >
     <h1>Signup here</h1>
   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -71,13 +74,14 @@ function SignupPage() {
     Submit
   </Button>
   {/* {
-  errors ? 
-  errors.map(error => (
+    errors ? 
+    errors.map(error => (
       <li>{error}</li>
       ))
-    : null
+      : null
     } */}
 </Form>
+    </Container>
   );
 }
 

@@ -27,6 +27,7 @@ export const updateArtist = createAsyncThunk("artists/updateArtist", async funct
 const initialState = {
     entities: [],
     artistObj: null,
+    errors: null,
     status: "idle"
 }
 
@@ -40,6 +41,7 @@ const artistsSlice = createSlice({
         resetArtistObj: (state) => {
             state.artistObj = null
         },
+        clearArtistErrors: state => {state.errors = null}
        
     },
     extraReducers:
@@ -56,17 +58,29 @@ const artistsSlice = createSlice({
             state.status = "loading"
         })
         .addCase(addNewArtist.fulfilled, (state, action) => {
-            state.entities.push(action.payload)
-            state.artistObj = action.payload
-            state.status = "idle"
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+                state.status = "idle"
+            } else {
+                state.entities.push(action.payload)
+                state.artistObj = action.payload
+                state.status = "idle"
+            }
         })
+
         .addCase(updateArtist.pending, state => {state.status = 'loading'})
         .addCase(updateArtist.fulfilled, (state, action) => {
-            state.entities = state.entities.filter(artist => artist.id !== action.payload.id)
-            state.entities.push(action.payload)
-            state.artistObj = action.payload
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+                state.status = "idle"
+            } else {
+                state.entities = state.entities.filter(artist => artist.id !== action.payload.id)
+                state.entities.push(action.payload)
+                state.artistObj = action.payload
+            }
+
         })
     )
 })
-export const {noUserArtists, resetArtistObj} = artistsSlice.actions
+export const {noUserArtists, resetArtistObj, clearArtistErrors} = artistsSlice.actions
 export default artistsSlice.reducer

@@ -3,18 +3,21 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { resetArtistObj, updateArtist } from '../../features/artistsSlice'
+import { clearArtistErrors, resetArtistObj, updateArtist } from '../../features/artistsSlice'
 import { updateUserArtists } from '../../features/sessionSlice'
 
 function EditArtist() {
-  const artists = useSelector(state => state.user.entities.artists)
   const params = useParams()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const artistId = parseInt(params.id)
+
+  const artists = useSelector(state => state.user.entities.artists)
+  const editedArtist = useSelector(state => state.artists.artistObj)
+  const errors = useSelector(state => state.artists.errors)
+  
   const artistData = artists.find(artist => artist.id === artistId)
   const [formData, setFormData] = useState({})
-  const dispatch = useDispatch()
-  const obj = useSelector(state => state.artists.artistObj)
 
   useEffect(() => {
     setFormData(artistData)
@@ -25,21 +28,24 @@ function EditArtist() {
       dispatch(updateArtist({formData, artistId}))
     }
     useEffect(() => {
-      if (obj) {
-        dispatch(updateUserArtists(obj))
+      if (editedArtist) {
+        dispatch(updateUserArtists(editedArtist))
         navigate('/artists')
         dispatch(resetArtistObj())
+        dispatch(clearArtistErrors())
         setFormData({})
       }
-    },[obj])
+    },[editedArtist])
 
     console.log(artistId)
   console.log(artistData)
   console.log(formData)
+  
     if (!formData) {
       return <div>Loading.. </div>
     }
 
+    
   return (
     <div>
         <h1>Edit artist info</h1>
@@ -76,6 +82,7 @@ function EditArtist() {
         </Form.Group>
         <Button onClick={handleSubmit} >Edit artist info</Button>
       </Form>
+      {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../features/sessionSlice';
+import Container from 'react-bootstrap/esm/Container';
 
 function LoginPage() {
     const navigate = useNavigate()
@@ -43,6 +44,8 @@ function LoginPage() {
     }
 
   return (
+    <Container>
+
   <Form onSubmit={handleLoginSubmit} >
     <h1>Welcome back! Please Login</h1>
   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -71,13 +74,14 @@ function LoginPage() {
     Submit
   </Button>
   {/* {
-  errors ? 
-  errors.map(error => (
+    errors ? 
+    errors.map(error => (
       <li>{error}</li>
       ))
-    : null
+      : null
     } */}
 </Form>
+    </Container>
   );
 }
 

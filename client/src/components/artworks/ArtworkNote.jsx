@@ -3,26 +3,21 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleNoteEdit, updateNote } from '../../features/noteSlice';
+import { updateNote } from '../../features/noteSlice';
 import { updateUserNotes } from '../../features/sessionSlice';
 
 
 function ArtworkNote({note}) {
     const [editNote, setEditNote] = useState(false)
-    const [addNote, setAddNote] = useState(false)
     const [textData, setTextData] = useState(note)
     const newNote = useSelector(state => state.notes.noteObj)
     const dispatch = useDispatch()
-    // const editNote = useSelector(state => state.notes.editNote)
 
     useEffect(() => {
         if(!note.body) {
             setEditNote(true)
         } 
     }, [note.body])
-
-    console.log(editNote)
-    console.log(note)
 
     function handleSubmit(e) {
     e.preventDefault()    
@@ -35,16 +30,7 @@ function ArtworkNote({note}) {
             dispatch(updateUserNotes(newNote))
             setEditNote(false)
     }
-}, [newNote])
-// useEffect(() => {
-//     if(obj && addNote) {
-//         dispatch(addNoteToUser(textData))
-//         setAddNote(false)
-//     } else if(obj && editNote)
-// }, [])
-
-
-console.log(textData)
+    }, [newNote])
 
   return (
     <>

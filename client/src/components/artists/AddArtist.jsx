@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addNewArtist, resetArtistObj } from '../../features/artistsSlice'
+import { addNewArtist, clearArtistErrors, resetArtistObj } from '../../features/artistsSlice'
 import { addArtistToUser } from '../../features/sessionSlice'
 
 function AddArtist() {
@@ -17,7 +17,8 @@ function AddArtist() {
   }
   const [formData, setFormData] = useState(initialObj)
   const artists = useSelector(state => state.artists.entities)
-  const obj = useSelector(state => state.artists.artistObj)
+  const newArtist = useSelector(state => state.artists.artistObj)
+  const errors = useSelector(state => state.artists.errors)
   
   function handleSubmit(e) {
     e.preventDefault()
@@ -25,14 +26,15 @@ function AddArtist() {
   }
     
   useEffect(() => {
-    if (obj) {
-      dispatch(addArtistToUser(obj))
+    if (newArtist) {
+      dispatch(addArtistToUser(newArtist))
       const artistId = artists.map(artist => artist.id).length
       navigate(`/artworks/add/${artistId}`)
       dispatch(resetArtistObj())
+      dispatch(clearArtistErrors())
       setFormData(initialObj)
     }
-  },[obj])
+  },[newArtist])
 
   return (
     <div>
@@ -67,6 +69,8 @@ function AddArtist() {
         </Form.Group>
         <Button onClick={handleSubmit} >Add artist</Button>
       </Form>
+      {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+      
     </div>
   )
 }

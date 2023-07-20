@@ -28,7 +28,6 @@ export const updateNote = createAsyncThunk("notes/editNote", async function (not
 const initialState = {
     entities: [],
     noteObj: null,
-    editNote: false,
     status: 'idle'
 }
 
@@ -39,13 +38,6 @@ const noteSlice = createSlice({
         resetNoteObj: (state) => {
             state.noteObj = null
         },
-        deleteNote: (state, id) => {
-            fetch(`/notes/${id}`, {method: 'DELETE'})
-            state.entities = state.entities.filter(note => note.id !== id)
-        },
-        toggleNoteEdit: (state) => {
-            state.editNote = !state.editNote
-        }
     },
 
     extraReducers: (builder) => {
@@ -66,5 +58,5 @@ const noteSlice = createSlice({
     }
 })
 
-export const {resetNoteObj, deleteNote, toggleNoteEdit} = noteSlice.actions
+export const {resetNoteObj} = noteSlice.actions
 export default noteSlice.reducer

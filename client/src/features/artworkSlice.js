@@ -30,6 +30,7 @@ export const updateArtwork = createAsyncThunk("artwork/updateArtwork", async fun
 const initialState = {
     entities: [],
     artworkObj: null,
+    errors: null,
     status: "idle",
 }
 
@@ -37,12 +38,10 @@ const artworkSlice = createSlice({
     name: 'artwork',
     initialState,
     reducers: {
-        // noUserArtworks: (state) => {
-        //     Object.assign(state, initialState)
-        // },
         resetArtworkObj: (state) => {
             state.artworkObj = null
-        }
+        },
+        clearArtworkErrors: state => {state.errors = null}
     },
     extraReducers:
     (builder) => {
@@ -58,17 +57,28 @@ const artworkSlice = createSlice({
             state.status = "loading"
         })
         .addCase(addNewArtwork.fulfilled, (state, action) => {
-            state.entities.push(action.payload)
-            state.artworkObj = action.payload
-            state.status = "idle"
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+                state.status = "idle"
+            } else {
+                state.entities.push(action.payload)
+                state.artworkObj = action.payload
+                state.status = "idle"
+            }
         })
+
         .addCase(updateArtwork.fulfilled, (state, action) => {
-            state.entities = state.entities.filter(artwork => artwork.id !== action.payload.id)
-            state.entities.push(action.payload)
-            state.artworkObj = action.payload
+            if (action.payload.errors) {
+                state.errors = action.payload.errors
+                state.status = "idle"
+            } else {
+                state.entities = state.entities.filter(artwork => artwork.id !== action.payload.id)
+                state.entities.push(action.payload)
+                state.artworkObj = action.payload
+            }
         })
     }
 })
 
-export const {noUserArtworks, resetArtworkObj} = artworkSlice.actions
+export const {noUserArtworks, resetArtworkObj, clearArtworkErrors} = artworkSlice.actions
 export default artworkSlice.reducer

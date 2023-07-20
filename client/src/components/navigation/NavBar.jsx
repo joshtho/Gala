@@ -1,6 +1,8 @@
 // import { useState } from 'react';
 import Button  from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../features/sessionSlice';
@@ -13,13 +15,48 @@ const navigate = useNavigate()
 const user = useSelector(state => state.user.entities)
   
 function handleLogout() {
-    dispatch(logoutUser())
-    navigate("/")
+  dispatch(logoutUser())
+  navigate('/')
 }
+  
+
+
     
 return (
     <>
     {user && user.id ?
+    <Navbar bg="light" data-bs-theme="light">
+        <Container>
+          <Link to='/' style={{textDecoration: "none"}}>
+            <Navbar.Brand >Galla</Navbar.Brand>
+          </Link>
+            <Nav.Link as={Link} to='/artists' >Artists</Nav.Link>
+            
+          <Nav className="ml-auto">
+          <Navbar.Text >
+            Welcome: {user.username}
+          </Navbar.Text>
+          
+          <Nav.Link onClick={handleLogout} className='button'>Logout</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    
+    : 
+    <Navbar bg="light" data-bs-theme="light">
+        <Container>
+          <Link to='/' style={{textDecoration: "none"}}>
+            <Navbar.Brand >Galla</Navbar.Brand>
+          </Link>
+          <Nav className="me-auto">
+              <Nav.Link as={Link} to='/signup' >Signup</Nav.Link>
+              <Nav.Link as={Link} to='/login' >Login</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+     
+    }
+    {/* {user && user.id ?
     <Nav>
       <Nav.Item>
         <Link to='/'>
@@ -56,7 +93,7 @@ return (
                 </Link>
             </Nav.Item>
         </Nav>
-    }
+    } */}
     </>
     // <Nav
     //   activeKey="/home"

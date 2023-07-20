@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchArtwork, noUserArtworks } from './features/artworkSlice';
+
 import { fetchArtists, noUserArtists } from './features/artistsSlice';
 import { fetchUser } from './features/sessionSlice';
 import HomePage from './components/static/HomePage';
@@ -40,7 +40,7 @@ if (loading === "loading") {
   return <div>Loading...</div>
 } 
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
         <NavBar />
         <Routes>

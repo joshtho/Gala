@@ -1,58 +1,52 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { resetArtworkObj, updateArtwork } from '../../features/artworkSlice'
+import { clearArtworkErrors, resetArtworkObj, updateArtwork } from '../../features/artworkSlice'
 import { updateUserArtwork } from '../../features/sessionSlice'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
-import { updateNote } from '../../features/noteSlice'
 
 function EditArtwork() {
-    const artworks = useSelector(state => state.user.entities.artworks)
-    const notes = useSelector(state => state.user.entities.notes)
-    const params = useParams()
-    const navigate = useNavigate()
-    const artworkId = parseInt(params.id)
-    const artworkData = artworks.find(artwork => artwork.id === artworkId)
-    // const currentNotes = notes.find(note => note.artwork.id === artworkId)
-    const [formData, setFormData] = useState(null)
-    // const [noteData, setNoteData] = useState(null)
-    const dispatch = useDispatch()
-    const obj = useSelector(state => state.artwork.artworkObj)
+  const params = useParams()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const artworkId = parseInt(params.id)
+  
+  const artworks = useSelector(state => state.user.entities.artworks)
+  const errors = useSelector(state => state.artwork.errors)
+  const editedArtwork = useSelector(state => state.artwork.artworkObj)
+  
+  const artworkData = artworks.find(artwork => artwork.id === artworkId)
+  const [formData, setFormData] = useState(null)
 
-    useEffect(() => {
-        setFormData(artworkData)
-      },[artworkData])
-    // useEffect(() => {
-    //     setNoteData(currentNotes)
-    //   },[currentNotes])
+  useEffect(() => {
+    setFormData(artworkData)
+  },[artworkData])
         
-    function handleSubmit(e) {
-        e.preventDefault()
-        dispatch(updateArtwork({formData, artworkId}))
+  function handleSubmit(e) {
+    e.preventDefault()
+    dispatch(updateArtwork({formData, artworkId}))
+  }
+
+  useEffect(() => {
+    if (editedArtwork) {
+      dispatch(updateUserArtwork(editedArtwork))
+      navigate(`/artworks/${formData.artist.id}`)
+      dispatch(resetArtworkObj())
+      dispatch(clearArtworkErrors())
+      setFormData(null)
     }
-        
-    useEffect(() => {
-        if (obj) {
-            dispatch(updateUserArtwork(obj))
-            navigate(`/artworks/${formData.artist.id}`)
-            dispatch(resetArtworkObj())
-            setFormData(null)
-        }
-    },[obj])
+  },[editedArtwork])
 
-    if (!formData) {
-        return <div>Loading.. </div>
-      }
+  if (!formData) {
+    return <div>Loading.. </div>
+  }
+
   return (
     <div>
       <h1>Edit an Art piece!</h1>
         Artist: {formData.artist.name}
-      {/* <Form.Select onChange={e => setFormData({...formData, artist_id: e.target.value})} value={artistId}>
-        {artists.map(artist => (
-          <option key={artist.id} value={artist.id} >{artist.name}</option>
-        ))}
-      </Form.Select> */}
+      
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title of work</Form.Label>
@@ -90,17 +84,13 @@ function EditArtwork() {
             onChange={(e) => setFormData({...formData, location: e.target.value})}
           />
         </Form.Group>
-        {/* <Form.Group>
-          <Form.Label>Notes</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="How did you find this?"
-            value={noteData.body}
-            onChange={(e) => setNoteData({...noteData, body: e.target.value})}
-          />
-        </Form.Group> */}
         <Button onClick={handleSubmit}>Edit art piece</Button>
       </Form>
+      {errors ? 
+      errors.map((error, index) => (
+      <p key={index} style={{color: "red"}}>{error}</p>
+      )) 
+      : ""}
     </div>
   )
 }

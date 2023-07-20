@@ -64,3 +64,12 @@
   gap: 1rem;
   align-items: flex-start;
 }
+
+.nav-right {
+  right: 10rem;  
+} 
+
+.button:hover {
+  text-transform: uppercase;
+  color: darkred;
+}

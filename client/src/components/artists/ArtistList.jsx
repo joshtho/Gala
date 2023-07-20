@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import ArtistTile from './ArtistTile'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
+import Container from 'react-bootstrap/esm/Container'
 
 function ArtistList() {
   const user = useSelector(state => state.user.entities)
@@ -10,8 +11,9 @@ function ArtistList() {
   console.log(user)
 
   return (
-    <div className='card-grid' >
+    <div  >
       <h1>My Artists</h1>
+      <Container className='card-grid'>
         { user ?
         user.artists.map(artist => (
             <ArtistTile key={artist.id} artist={artist} />
@@ -19,10 +21,12 @@ function ArtistList() {
         :
         "Loading..."   
         }
+      </Container>
         <h2>Add a new artist</h2>
         <Link to={`add`} >
           <Button>Add a new artist</Button>
         </Link>
+
     </div>
   )
 }

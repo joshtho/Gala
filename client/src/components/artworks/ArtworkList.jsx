@@ -19,7 +19,7 @@ function ArtworkList() {
       }
     <div>
       <Link to={`/artworks/add/${artistId}`}>
-        <Button>Add more artwork from this artist</Button>
+        <Button variant="outline-secondary">Add more artwork from this artist</Button>
       </Link>
     </div>
     </div>
