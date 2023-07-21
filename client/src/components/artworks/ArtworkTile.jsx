@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ArtworkNote from './ArtworkNote';
-import { $CombinedState } from '@reduxjs/toolkit';
+
 
 function ArtworkTile({artwork}) {
   const notes = useSelector(state => state.user.entities.notes)
