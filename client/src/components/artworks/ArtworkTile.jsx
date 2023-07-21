@@ -2,14 +2,25 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/esm/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import CloseButton from 'react-bootstrap/CloseButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import ArtworkNote from './ArtworkNote';
+import { removeArtwork } from '../../features/artworkSlice';
+import { removeArtworkFromUser } from '../../features/sessionSlice';
 
 
 function ArtworkTile({artwork}) {
   const notes = useSelector(state => state.user.entities.notes)
   const artworkNote = notes.find(note => note.artwork.id === artwork.id)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  function handleDelete() {
+    dispatch(removeArtwork(artwork.id))
+    dispatch(removeArtworkFromUser(artwork.id))
+    navigate(`/artworks/${artwork.artist.id}`)
+  }
 
   if (!artworkNote) {
     return "loading.."
@@ -17,6 +28,7 @@ function ArtworkTile({artwork}) {
   
   return (
     <Card className='card'>
+      <CloseButton onClick={handleDelete} />
         <h2>{artwork.title}</h2>
           <Link to={`/artworks/edit/${artwork.id}`}>
             <Button variant="outline-secondary" size="sm">Edit</Button>

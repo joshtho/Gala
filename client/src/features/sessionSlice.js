@@ -72,8 +72,11 @@ const sessionSlice = createSlice({
             state.entities.artists.push(action.payload)
         },
         updateUserArtwork: (state, action) => {
-            state.entities.artworks = state.entities.artworks.filter(artist => artist.id !== action.payload.id)
+            state.entities.artworks = state.entities.artworks.filter(artwork => artwork.id !== action.payload.id)
             state.entities.artworks.push(action.payload)
+        },
+        removeArtworkFromUser: (state, action) => {
+            state.entities.artworks = state.entities.artworks.filter(artwork => artwork.id !== action.payload)
         }
     },
     extraReducers: 
@@ -123,6 +126,7 @@ export const {
     addNoteToUser, 
     updateUserArtists,
     updateUserArtwork,
-    updateUserNotes
+    updateUserNotes,
+    removeArtworkFromUser
 } = sessionSlice.actions
 export default sessionSlice.reducer
