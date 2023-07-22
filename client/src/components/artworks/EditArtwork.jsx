@@ -5,6 +5,7 @@ import { clearArtworkErrors, resetArtworkObj, updateArtwork } from '../../featur
 import { updateUserArtwork } from '../../features/sessionSlice'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
+import Container from 'react-bootstrap/esm/Container'
 
 function EditArtwork() {
   const params = useParams()
@@ -50,6 +51,8 @@ function EditArtwork() {
 
   return (
     <div>
+      <Container>
+
       <h1>Edit an Art piece!</h1>
         Artist: {formData.artist.name}
       
@@ -61,7 +64,7 @@ function EditArtwork() {
             placeholder="Title of art piece..."
             value={formData.title}
             onChange={(e) => setFormData({...formData, title: e.target.value})}
-          />
+            />
         </Form.Group>
         <Form.Group>
           <Form.Label>Art Piece image</Form.Label>
@@ -79,7 +82,7 @@ function EditArtwork() {
             placeholder="Medium for the piece..."
             value={formData.medium}
             onChange={(e) => setFormData({...formData, medium: e.target.value})}
-          />
+            />
         </Form.Group>
         <Form.Group>
           <Form.Label>Artworks current location</Form.Label>
@@ -94,9 +97,10 @@ function EditArtwork() {
       </Form>
       {errors ? 
       errors.map((error, index) => (
-      <p key={index} style={{color: "red"}}>{error}</p>
-      )) 
-      : ""}
+        <p key={index} style={{color: "red"}}>{error}</p>
+        )) 
+        : ""}
+      </Container>
     </div>
   )
 }

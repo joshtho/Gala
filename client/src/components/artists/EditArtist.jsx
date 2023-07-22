@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { clearArtistErrors, resetArtistObj, updateArtist } from '../../features/artistsSlice'
 import { updateUserArtists } from '../../features/sessionSlice'
+import Container from 'react-bootstrap/esm/Container'
 
 function EditArtist() {
   const params = useParams()
@@ -51,7 +52,8 @@ function EditArtist() {
   return (
     <div>
         <h1>Edit artist info</h1>
-        
+        <Container>
+
       <Form onSubmit={handleSubmit} >
         <Form.Group>
           <Form.Label>Artist's name</Form.Label>
@@ -84,7 +86,12 @@ function EditArtist() {
         </Form.Group>
         <Button onClick={handleSubmit} >Edit artist info</Button>
       </Form>
-      {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+      {errors ? 
+        errors.map((error, index) => (
+          <p key={index} style={{color: "red"}}>{error}</p>
+        )) 
+      : ""}
+    </Container>
     </div>
   )
 }

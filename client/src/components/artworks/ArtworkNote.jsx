@@ -62,7 +62,7 @@ function ArtworkNote({note}) {
               {textData.body}
             <br></br>
             <ButtonGroup aria-label="Third group">
-                <Button onClick={() => setEditNote(true)}>edit</Button>
+                <Button variant='outline-secondary' onClick={() => setEditNote(true)}>Edit</Button>
             </ButtonGroup>
             </Accordion.Body>
           </Accordion.Item>

@@ -41,7 +41,11 @@ const artistsSlice = createSlice({
         resetArtistObj: (state) => {
             state.artistObj = null
         },
-        clearArtistErrors: state => {state.errors = null}
+        clearArtistErrors: state => {state.errors = null},
+        removeArtist: (state, action) => {
+            fetch(`/artists/${action.payload}`,{method: "DELETE"})
+            state.entities = state.entities.filter(artist => artist.id !== action.payload)
+        }
        
     },
     extraReducers:
@@ -82,5 +86,5 @@ const artistsSlice = createSlice({
         })
     )
 })
-export const {noUserArtists, resetArtistObj, clearArtistErrors} = artistsSlice.actions
+export const {noUserArtists, resetArtistObj, clearArtistErrors, removeArtist} = artistsSlice.actions
 export default artistsSlice.reducer

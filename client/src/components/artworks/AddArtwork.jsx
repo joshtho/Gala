@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/esm/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
@@ -44,11 +45,9 @@ function AddArtwork() {
       dispatch(addArtworkToUser(newArt))
       dispatch(resetArtworkObj())
       setFormData(formObj)
-      dispatch(clearArtworkErrors())
     } 
     
   },[newArt])
-  // find a different way of doing this, because anytime 
   useEffect(() => {
     if(newNote) {
       dispatch(addNoteToUser(newNote))
@@ -65,12 +64,14 @@ function AddArtwork() {
 
   return (
     <div>
+      <Container>
+
       <h1>Add an Art piece!</h1>
         Artist:
       <Form.Select onChange={e => setFormData({...formData, artist_id: e.target.value})} value={artistId}>
         {artists.map(artist => (
           <option key={artist.id} value={artist.id} >{artist.name}</option>
-        ))}
+          ))}
       </Form.Select>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
@@ -107,11 +108,12 @@ function AddArtwork() {
             placeholder="Artwork is currently located..."
             value={formData.location}
             onChange={(e) => setFormData({...formData, location: e.target.value})}
-          />
+            />
         </Form.Group>
         <Button onClick={handleSubmit}>Add art piece</Button>
       </Form>
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+      </Container>
     </div>
   )
 }

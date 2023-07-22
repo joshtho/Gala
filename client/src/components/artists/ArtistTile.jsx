@@ -1,14 +1,26 @@
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/esm/Container';
+import { useDispatch } from 'react-redux';
+import { removeArtist } from '../../features/artistsSlice';
+import CloseButton from 'react-bootstrap/esm/CloseButton';
+import { removeArtistFromUser } from '../../features/sessionSlice';
 
 function ArtistTile({artist}) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
+  function handleDelete() {
+    dispatch(removeArtist(artist.id))
+    dispatch(removeArtistFromUser(artist.id))
+    navigate(`/artists`)
+  }
 
   return (
     <Container className='card-wrap'>
       <Card className='card'>
+        <CloseButton onClick={handleDelete} />
         <Card.Img variant="top" src={artist.image} />
         <Card.Body>
           <Card.Title>{artist.name}</Card.Title>

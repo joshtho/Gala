@@ -15,10 +15,10 @@ function HomePage() {
       />
     </Carousel.Item>
   ))
-    console.log(artwork)
+
   return (
         <div>
-          {loggedIn ? 
+          {loggedIn && artwork[0] ? 
           <Carousel>
             {showArt}
           </Carousel>
