@@ -18,7 +18,7 @@ function LoginPage() {
     console.log(loggedIn)
     function handleLoginSubmit(e) {
       e.preventDefault()
-      dispatch(loginUser(loginData, dispatch))
+      dispatch(loginUser(loginData))
     }
 
     useEffect(() => {
