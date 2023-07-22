@@ -47,6 +47,16 @@ mona_lisa1 = Artwork.create(
         user_id: user1.id
     }
 )
+last_supper = Artwork.create(
+    {
+        title: "The last supper",
+        image:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/The-Last-Supper-Restored-Da-Vinci_32x16.jpg/2560px-The-Last-Supper-Restored-Da-Vinci_32x16.jpg",
+        medium: "Oil on canvas",
+        location: "Santa Maria delle Grazie",
+        artist_id: leonardo.id,
+        user_id: user1.id
+    }
+)
 mona_lisa2 = Artwork.create(
     {
         title: "The Mona Lisa",
@@ -68,6 +78,16 @@ persistence = Artwork.create(
         user_id: user1.id
     }
 )
+swans = Artwork.create(
+    {
+        title: "Swans Reflecting Elephants",
+        image: "https://www.dalipaintings.com/images/paintings/swans-reflecting-elephants.jpg",
+        medium: "Oil paint",
+        location: "private collection",
+        artist_id: salvador.id,
+        user_id: user1.id
+    }
+)
 
 note1 = Note.create({
     body: "Got this print in paris when I was visiting the louvre, Seemed appropriate!",
@@ -79,7 +99,15 @@ note2 = Note.create({
     artwork_id: mona_lisa2.id
 })
 note3 = Note.create({
-    body: "I got also this print at recycled books",
+    body: "I got this print at recycled books",
     artwork_id: persistence.id
+})
+note4 = Note.create({
+    body: "I just love this painting",
+    artwork_id: last_supper.id
+})
+note5 = Note.create({
+    body: "This one is trippy",
+    artwork_id: swans.id
 })
 
