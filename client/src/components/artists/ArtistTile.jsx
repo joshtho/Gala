@@ -14,7 +14,7 @@ function ArtistTile({artist}) {
           <Card.Title>{artist.name}</Card.Title>
           <Card.Text>{artist.description}</Card.Text>
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
               Select
             </Dropdown.Toggle>
             <Dropdown.Menu>

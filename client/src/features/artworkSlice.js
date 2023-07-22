@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 
-// export const fetchArtwork = createAsyncThunk("artwork/fetchArtwork", async function() {
-//     return fetch("/artworks")
-//     .then(r => r.json())
-//     .then(state => state)
-// })
+export const fetchArtwork = createAsyncThunk("artwork/fetchArtwork", async function() {
+    return fetch("/artworks")
+    .then(r => r.json())
+    .then(state => state)
+})
 
 export const addNewArtwork = createAsyncThunk("artwork/addNewArtwork", async function(formData) {
     return fetch("/artworks", {
@@ -50,13 +50,13 @@ const artworkSlice = createSlice({
     extraReducers:
     (builder) => {
         builder
-        // .addCase(fetchArtwork.pending, (state) => {
-        //     state.status = "loading"
-        // })
-        // .addCase(fetchArtwork.fulfilled, (state, action) => {
-        //     state.entities = action.payload
-        //     state.status = "idle"
-        // })
+        .addCase(fetchArtwork.pending, (state) => {
+            state.status = "loading"
+        })
+        .addCase(fetchArtwork.fulfilled, (state, action) => {
+            state.entities = action.payload
+            state.status = "idle"
+        })
         .addCase(addNewArtwork.pending, (state) => {
             state.status = "loading"
         })

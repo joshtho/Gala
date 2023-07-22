@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchArtists, noUserArtists } from './features/artistsSlice';
 import { fetchUser } from './features/sessionSlice';
+import { fetchNotes } from './features/noteSlice';
+import { fetchArtwork } from './features/artworkSlice';
+
 import HomePage from './components/static/HomePage';
 import NavBar from './components/navigation/NavBar';
 import LoginPage from './components/navigation/LoginPage';
@@ -15,7 +18,6 @@ import AddArtist from './components/artists/AddArtist';
 import AddArtwork from './components/artworks/AddArtwork';
 import EditArtist from './components/artists/EditArtist';
 import EditArtwork from './components/artworks/EditArtwork';
-import { fetchNotes } from './features/noteSlice';
 
 function App() {
   const loggedIn = useSelector(state => state.user.loggedIn)
@@ -30,6 +32,7 @@ function App() {
     if(loggedIn) {
       dispatch(fetchArtists())
       dispatch(fetchNotes())
+      dispatch(fetchArtwork())
     } else {
       dispatch(noUserArtists())
     }

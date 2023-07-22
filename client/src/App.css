@@ -38,10 +38,16 @@
 }
  .Artwork-Card {
   height: auto;
-  max-height: 250px;
+  max-height: 400px;
   width: auto;
-  max-width: 250px;
+  max-width: 400px;
   margin-bottom: 10px;
+  background: white;
+  border-radius: .25rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 2);
+  color: #222;
+  flex: 0 0 100%;
+  
  }
 
  .card {
