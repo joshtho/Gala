@@ -17,7 +17,6 @@ function AddArtist() {
     
   }
   const [formData, setFormData] = useState(initialObj)
-  const artists = useSelector(state => state.artists.entities)
   const newArtist = useSelector(state => state.artists.artistObj)
   const errors = useSelector(state => state.artists.errors)
   
@@ -29,8 +28,7 @@ function AddArtist() {
   useEffect(() => {
     if (newArtist) {
       dispatch(addArtistToUser(newArtist))
-      const artistId = artists.map(artist => artist.id).length
-      navigate(`/artworks/add/${artistId}`)
+      navigate(`/artworks/add/${newArtist.id}`)
       dispatch(resetArtistObj())
       dispatch(clearArtistErrors())
       setFormData(initialObj)

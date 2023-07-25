@@ -4,12 +4,6 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async function() {
     return fetch("/me")
     .then(r => r.json())
     .then(state => state)
-//     .then(r => {
-//         if (r.ok) {
-//         return r.json().then(state => state)
-//     } 
-// })
-   
 })
 
 export const loginUser = createAsyncThunk("user/loginUser", async function(loginData) {

@@ -16,6 +16,7 @@ function AddArtwork() {
   const artistId = parseInt(params.id)
 
   const artists = useSelector(state => state.artists.entities)
+  const currentArtist = artists.find(artist => artist.id === artistId)
   const errors = useSelector(state => state.artwork.errors)
   const newArt = useSelector(state => state.artwork.artworkObj)
   const newNote = useSelector(state => state.notes.noteObj)
@@ -62,17 +63,15 @@ function AddArtwork() {
     }
   },[errors])
 
+  console.log(currentArtist)
+
   return (
     <div>
       <Container>
 
       <h1>Add an Art piece!</h1>
-        Artist:
-      <Form.Select onChange={e => setFormData({...formData, artist_id: e.target.value})} value={artistId}>
-        {artists.map(artist => (
-          <option key={artist.id} value={artist.id} >{artist.name}</option>
-          ))}
-      </Form.Select>
+      <h3>Artist: {currentArtist.name}</h3>  
+      
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title of work</Form.Label>
