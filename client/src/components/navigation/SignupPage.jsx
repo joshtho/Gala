@@ -41,10 +41,10 @@ function SignupPage() {
   <Form onSubmit={handleSignupSubmit} >
     <h1>Signup here</h1>
   <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Username</Form.Label>
+    <Form.Label>Email</Form.Label>
       <Form.Control 
       type="email" 
-      placeholder="Enter username"
+      placeholder="Enter Email"
       value={loginData.username}
       onChange={e => setLoginData({...loginData, username: e.target.value})}
       />
