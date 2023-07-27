@@ -15,7 +15,7 @@ function AddArtwork() {
   const params = useParams()
   const artistId = parseInt(params.id)
 
-  const artists = useSelector(state => state.artists.entities)
+  const artists = useSelector(state => state.user.entities.artists)
   const currentArtist = artists.find(artist => artist.id === artistId)
   const errors = useSelector(state => state.artwork.errors)
   const newArt = useSelector(state => state.artwork.artworkObj)
