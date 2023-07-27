@@ -40,10 +40,10 @@ function LoginPage() {
   <Form onSubmit={handleLoginSubmit} >
     <h1>Welcome back! Please Login</h1>
   <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Username</Form.Label>
+    <Form.Label>Email</Form.Label>
       <Form.Control 
       type="email" 
-      placeholder="Enter username"
+      placeholder="Enter email"
       value={loginData.username}
       onChange={e => setLoginData({...loginData, username: e.target.value})}
       />

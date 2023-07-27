@@ -101,6 +101,7 @@ function EditArtwork() {
         )) 
         : ""}
       </Container>
+      <Button onClick={() => {navigate(`/artworks/${formData.artist.id}`)}} >Cancel</Button>
     </div>
   )
 }
