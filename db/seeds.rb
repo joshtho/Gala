@@ -22,6 +22,57 @@ salvador = Artist.create(
 
     }
 )
+donatello = Artist.create(
+    {
+        name: "Donatello",
+        description: "An Italian sculptor of the Renaissance period. Born in Florence, he studied classical sculpture and used his knowledge to develop an Early Renaissance style of sculpture.",
+        image: "https://www.donatello.net/images/donatello.jpeg"
+
+    }
+)
+
+michelangelo = Artist.create(
+    {
+        name: "Michelangelo",
+        description: "An Italian sculptor, painter, architect, and poet of the High Renaissance. His work was inspired by models from classical antiquity and had a lasting influence on Western art.Given the sheer volume of surviving correspondence, sketches, and reminiscences, Michelangelo is one of the best-documented artists of the 16th century.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/800px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg"
+
+    }
+)
+
+banksy = Artist.create(
+    {
+        name: "Banksy",
+        description: "Banksy is a pseudonymous England-based street artist, political activist and film director whose real name and identity remain unconfirmed and the subject of speculation. Active since the 1990s, his satirical street art and subversive epigrams combine dark humour with graffiti executed in a distinctive stenciling technique.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/5/55/Banksy-art.jpg"
+
+    }
+)
+warhol = Artist.create(
+    {
+        name: "Andy Warhol",
+        description: "An american visual artist, film director, producer, and leading figure in the pop art movement. His works explore the relationship between artistic expression, advertising, and celebrity culture that flourished by the 1960s, and span a variety of media, including painting, silkscreening, photography, film, and sculpture.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Andy_Warhol_at_the_Jewish_Museum_%28by_Bernard_Gotfryd%29_%E2%80%93_LOC.jpg/800px-Andy_Warhol_at_the_Jewish_Museum_%28by_Bernard_Gotfryd%29_%E2%80%93_LOC.jpg"
+
+    }
+)
+raphael = Artist.create(
+    {
+        name: "Raphael",
+        description: "An Italian painter and architect of the High Renaissance. His work is admired for its clarity of form, ease of composition, and visual achievement of the Neoplatonic ideal of human grandeur.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Raffaello_Sanzio.jpg/800px-Raffaello_Sanzio.jpg"
+
+    }
+)
+
+frida = Artist.create(
+    {
+        name: "Frida Kahlo",
+        description: "a Mexican painter known for her many portraits, self-portraits, and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class, and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/800px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg"
+
+    }
+)
 
 user1 = User.create(
     {
@@ -89,6 +140,74 @@ swans = Artwork.create(
     }
 )
 
+david = Artwork.create(
+    {
+        title: 'Bronze David', 
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/David%2C_Donatello%2C_ca._1440%2C_Bargello_Florenz-02.jpg/800px-David%2C_Donatello%2C_ca._1440%2C_Bargello_Florenz-02.jpg",
+        medium: 'bronze sculpture',
+        location: 'Museo Nazionale del Bargello',
+        artist_id: donatello.id,
+        user_id: user1.id
+    }
+)
+
+adam = Artwork.create(
+    {
+        title: 'The creation of adam', 
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/63/The_Creation_of_Adam.jpg",
+        medium: "Oil paint",
+        location: 'The sistine chapel, Vatican city',
+        artist_id: michelangelo.id,
+        user_id: user1.id
+    }
+)
+balloon = Artwork.create(
+    {
+        title: 'Balloon Girl', 
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Banksy_Girl_and_Heart_Balloon_%282840632113%29.jpg/1920px-Banksy_Girl_and_Heart_Balloon_%282840632113%29.jpg",
+        medium: 'grafitti mural',
+        location: 'London, UK',
+        artist_id: banksy.id,
+        user_id: user1.id
+    }
+)
+
+marylin = Artwork.create(
+    {
+        title: "Shot Marylins",
+        image: "https://upload.wikimedia.org/wikipedia/en/5/5c/Shot_Marilyns.jpg",
+        medium: "silkscreen",
+        location: "multiple locations",
+        artist_id: warhol.id,
+        user_id: user1.id
+    }
+)
+
+athens = Artwork.create(
+    {
+        title: "School of Athens",
+        image: "https://upload.wikimedia.org/wikipedia/commons/0/03/Escola_de_atenas_-_vaticano.jpg",
+        medium: "fresco",
+        location: "Apostolic Palace, Vatican City",
+        artist_id: raphael.id,
+        user_id: user1.id
+    }
+)
+
+portrait = Artwork.create(
+    {
+        title: "Self portrait with thorn necklace and hummingbird",
+        image: "https://upload.wikimedia.org/wikipedia/en/1/1e/Frida_Kahlo_%28self_portrait%29.jpg",
+        medium: "Oil on Canvas",
+        location: "Harry Ransom Center, Austin, TX",
+        artist_id: frida.id,
+        user_id: user1.id
+    }
+)
+
+
+
+
 note1 = Note.create({
     body: "Got this print in paris when I was visiting the louvre, Seemed appropriate!",
     artwork_id: mona_lisa1.id
@@ -110,4 +229,29 @@ note5 = Note.create({
     body: "This one is trippy",
     artwork_id: swans.id
 })
+note6 = Note.create({
+    body: "Want this in my garden",
+    artwork_id: david.id
+})
+note7 = Note.create({
+    body: "Saw this in person at the vatican",
+    artwork_id: adam.id
+})
+note8 = Note.create({
+    body: "I have wanted this mural on one of my walls for a long time",
+    artwork_id: balloon.id
+})
+note9 = Note.create({
+    body: "Gf owns this print",
+    artwork_id: marylin.id
+})
+note10 = Note.create({
+    body: "Loved his frescos while I was in the vatican",
+    artwork_id: athens.id
+})
+note11 = Note.create({
+    body: "Saw this in austin",
+    artwork_id: portrait.id
+})
+
 
