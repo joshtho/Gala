@@ -28,7 +28,8 @@ return (
           <Link to='/' style={{textDecoration: "none"}}>
             <Navbar.Brand >Galla</Navbar.Brand>
           </Link>
-            <Nav.Link as={Link} to='/artists' >Artists</Nav.Link>
+            <Nav.Link as={Link} to='/artists' >Artist List</Nav.Link>
+            <Nav.Link as={Link} to={`/artists/${user.id}`} >My Artists</Nav.Link>
             
           <Nav className="ml-auto">
           <Navbar.Text >

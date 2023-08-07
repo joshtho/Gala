@@ -147,7 +147,7 @@ david = Artwork.create(
         medium: 'bronze sculpture',
         location: 'Museo Nazionale del Bargello',
         artist_id: donatello.id,
-        user_id: user1.id
+        user_id: user2.id
     }
 )
 
