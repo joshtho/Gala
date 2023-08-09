@@ -10,18 +10,10 @@ import CloseButton from 'react-bootstrap/esm/CloseButton';
 import { removeArtistFromUser } from '../../features/sessionSlice';
 import { useState } from 'react';
 
-function ArtistTile({
-  artist, 
-  onHandleNewArtistClick, 
-  // setNewArtistData, 
-  // newArtistData,
-}) {
+function ArtistTile({artist, onHandleNewArtistClick}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false);
-  // const [showButton, setShowButton] = useState(false)
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
   const userArtists = useSelector(state => state.user.entities.artists)
   const ownedArtist = userArtists.find(person => person.name === artist.name )
 
@@ -35,79 +27,100 @@ function ArtistTile({
     navigate(`/artists`)
   }
 
-  
-  
-
   return (
     <div>
-
       {ownedArtist ?
-      <div>
-      <Container className='card-wrap'>
-      <Card className='card'>
-        <CloseButton onClick={handleShow} />
-        <Card.Img variant="top" src={artist.image} />
-        <Card.Body>
-          <Card.Title>{artist.name}</Card.Title>
-          <Card.Text>{artist.description}</Card.Text>
-          <Dropdown>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              Select
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item as={Link} to={`/artworks/${artist.id}`}>My collection</Dropdown.Item>
-              <Dropdown.Item as={Link} to={`/artists/edit/${artist.id}`}>Edit info</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Card.Body>
-      </Card>
-    </Container>
-    <Modal
-        show={showModal}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Are you sure?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Deleting an Artist will delete all Artworks as well
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>DELETE Artist</Button>
-        </Modal.Footer>
-      </Modal>
-      </div>
-       :
-      <div>
-        <Container className='card-wrap'>
-      <Card className='card'>
-        
-        <Card.Img variant="top" src={artist.image} />
-        <Card.Body>
-          <Card.Title>{artist.name}</Card.Title>
-          <Card.Text>{artist.description}</Card.Text>
-          {ownedArtist ? 
-          <Dropdown>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              Select
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item as={Link} to={`/artworks/${artist.id}`}>My collection</Dropdown.Item>
-              <Dropdown.Item as={Link} to={`/artists/edit/${artist.id}`}>Edit info</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          :
-          <Button variant="outline-secondary" onClick={newArtistClick}>Add Artist?</Button>
-          }
-        </Card.Body>
-      </Card>
-    </Container>
-      </div>
+        <div>
+          <Container className='card-wrap'>
+            <Card className='card'>
+              <CloseButton onClick={() => setShowModal(true)} />
+              <Card.Img variant="top" src={artist.image} />
+              <Card.Body>
+                <Card.Title>{artist.name}</Card.Title>
+                <Card.Text>{artist.description}</Card.Text>
+                <Dropdown>
+                  <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                    Select
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item 
+                    as={Link} 
+                    to={`/artworks/${artist.id}`}
+                    >
+                      My collection
+                    </Dropdown.Item>
+                    <Dropdown.Item 
+                    as={Link} 
+                    to={`/artists/edit/${artist.id}`}
+                    >
+                      Edit info
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Card.Body>
+            </Card>
+          </Container>
+
+          <Modal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          backdrop="static"
+          keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Are you sure?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Deleting an Artist will delete all Artworks as well
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowModal(false)}>
+                Close
+              </Button>
+              <Button variant="danger" onClick={handleDelete}>DELETE Artist</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      :
+        <div>
+          <Container className='card-wrap'>
+            <Card className='card'>
+              <Card.Img variant="top" src={artist.image} />
+              <Card.Body>
+                <Card.Title>{artist.name}</Card.Title>
+                <Card.Text>{artist.description}</Card.Text>
+                {ownedArtist ? 
+                  <Dropdown>
+                    <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                      Select
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item 
+                      as={Link} 
+                      to={`/artworks/${artist.id}`}
+                      >
+                        My collection
+                      </Dropdown.Item>
+                      <Dropdown.Item 
+                      as={Link} 
+                      to={`/artists/edit/${artist.id}`}
+                      >
+                        Edit info
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                :
+                  <Button 
+                  variant="success" 
+                  onClick={newArtistClick}
+                  >
+                    Add Artist?
+                  </Button>
+                }
+              </Card.Body>
+            </Card>
+          </Container>
+        </div>
       }
     </div>
   );
