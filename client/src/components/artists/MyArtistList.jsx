@@ -20,7 +20,7 @@ function MyArtistList() {
         "Loading..."   
         }
       </Container>
-        <Link to={`add`} >
+        <Link to={`/artists/add`} >
           <Button variant="outline-secondary">Add a new artist</Button>
         </Link>
     </div>
