@@ -168,7 +168,7 @@ balloon = Artwork.create(
         medium: 'grafitti mural',
         location: 'London, UK',
         artist_id: banksy.id,
-        user_id: user1.id
+        user_id: user2.id
     }
 )
 
@@ -179,7 +179,7 @@ marylin = Artwork.create(
         medium: "silkscreen",
         location: "multiple locations",
         artist_id: warhol.id,
-        user_id: user1.id
+        user_id: user2.id
     }
 )
 
@@ -201,7 +201,7 @@ portrait = Artwork.create(
         medium: "Oil on Canvas",
         location: "Harry Ransom Center, Austin, TX",
         artist_id: frida.id,
-        user_id: user1.id
+        user_id: user2.id
     }
 )
 
