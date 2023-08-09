@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import Container from 'react-bootstrap/esm/Container';
 import { useSelector } from 'react-redux';
 
 function HomePage() {
@@ -26,8 +27,11 @@ function HomePage() {
           <div>
           <h1>Galla</h1>
           <img alt='Home-image' src='https://media.istockphoto.com/id/1218961153/photo/art-museum.jpg?s=612x612&w=0&k=20&c=9fK54fu1mjzFjDOSqg_jfrMy4Hkp8vsmImB7rLrbhJs='></img>
+          <Container>
           <br></br>
-          <p>Welcome to Galla! Galla is a site to store information about your favorite artists and their art pieces. After signup, use the Artists tab to find and save artists with an artwork that other users have added. Use the My Artists tab to see artists and their artwork that you have saved. All artwork saved will be loaded onto this homepage. Enjoy!</p>
+          <p className='paragraph' >Welcome to Galla! Galla is a site to store information about your favorite artists and their art pieces. After signup, use the Artists tab to find and save artists with an artwork that other users have added. Use the My Artists tab to see artists and their artwork that you have saved. All artwork saved will be loaded onto this homepage. Enjoy!</p>
+          </Container>
+
           </div>
           
           }

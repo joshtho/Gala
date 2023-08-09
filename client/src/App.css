@@ -86,3 +86,11 @@
   display: flex;
   padding: 10px; /* gutter width */
 }
+
+.paragraph {
+  font-family: Verdana, Arial, sans-serif;
+}
+
+h1 {
+  font-family: Verdana, Arial, sans-serif;
+}

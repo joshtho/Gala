@@ -14,12 +14,6 @@ class NotesController < ApplicationController
         note.update!(note_params)
         render json: note, status: :accepted
     end
-
-    # def destroy
-    #     note = Note.find_by(id: params[:id])
-    #     note.destroy
-    #     head :no_content
-    # end
     
     private
         
