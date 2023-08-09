@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
 import { addNewArtwork, clearArtworkErrors, resetArtworkObj } from '../../features/artworkSlice'
-import { addArtworkToUser, addNoteToUser } from '../../features/sessionSlice'
+import { addArtistToUser, addArtworkToUser, addNoteToUser } from '../../features/sessionSlice'
 import { addNote, resetNoteObj } from '../../features/noteSlice'
 
 
@@ -14,8 +14,8 @@ function AddArtwork() {
   const navigate = useNavigate()
   const params = useParams()
   const artistId = parseInt(params.id)
-
-  const artists = useSelector(state => state.user.entities.artists)
+  const userArtists = useSelector(state => state.user.entities.artists).map(artist => artist.id)
+  const artists = useSelector(state => state.artists.entities)
   const currentArtist = artists.find(artist => artist.id === artistId)
   const errors = useSelector(state => state.artwork.errors)
   const newArt = useSelector(state => state.artwork.artworkObj)
@@ -42,12 +42,16 @@ function AddArtwork() {
         body: "",
         artwork_id: newArt.id
       }
+      // const userArtistIds = userArtists
       dispatch(addNote(blankNote))
       dispatch(addArtworkToUser(newArt))
       dispatch(resetArtworkObj())
       setFormData(formObj)
+      if(userArtists.includes(currentArtist.id)) {} else {
+        dispatch(addArtistToUser(currentArtist))
+      }
     } 
-    
+
   },[newArt])
   useEffect(() => {
     if(newNote) {
@@ -63,10 +67,10 @@ function AddArtwork() {
     }
   },[errors])
 
-  console.log(currentArtist)
-
   return (
     <div>
+      {currentArtist ?
+
       <Container>
 
       <h1>Add an Art piece!</h1>
@@ -113,6 +117,8 @@ function AddArtwork() {
       </Form>
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
       </Container>
+       : 
+       ""}
     </div>
   )
 }

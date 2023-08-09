@@ -8,7 +8,7 @@ import { addNewArtist, resetArtistObj } from '../../features/artistsSlice'
 import { addArtistToUser } from '../../features/sessionSlice'
 
 function ArtistList() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const navigate = useNavigate()
   const artists = useSelector(state => state.artists.entities)
   
@@ -23,21 +23,18 @@ function ArtistList() {
     
   const [newArtistData, setNewArtistData] = useState(initialObj)
 
-  function handleNewArtistClick(data) {
-    if(data) {
-      dispatch(addNewArtist(data))
-
-    }
+  function handleNewArtistClick(id) {
+    navigate(`/artworks/add/${id}`)
+    
   }
     
-  useEffect(() => {
-    if (newArtist) {
-      dispatch(addArtistToUser(newArtist))
-      navigate(`/artworks/add/${newArtist.id}`)
-      dispatch(resetArtistObj())
-      setNewArtistData(initialObj)
-    }
-  },[newArtist])
+  // useEffect(() => {
+  //   if (newArtist) {
+  //     dispatch(addArtistToUser(newArtist))
+  //     dispatch(resetArtistObj())
+  //     setNewArtistData(initialObj)
+  //   }
+  // },[newArtist])
 
   return (
     <div  >

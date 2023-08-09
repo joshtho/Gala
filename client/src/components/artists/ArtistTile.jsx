@@ -13,8 +13,8 @@ import { useState } from 'react';
 function ArtistTile({
   artist, 
   onHandleNewArtistClick, 
-  setNewArtistData, 
-  newArtistData,
+  // setNewArtistData, 
+  // newArtistData,
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -26,13 +26,7 @@ function ArtistTile({
   const ownedArtist = userArtists.find(person => person.name === artist.name )
 
   function newArtistClick() {
-    setNewArtistData({
-      name: artist.name, 
-      description: artist.description, 
-      image: artist.image
-    })
-    console.log(newArtistData)
-    onHandleNewArtistClick(newArtistData)
+    onHandleNewArtistClick(artist.id)
   }
 
   function handleDelete() {
