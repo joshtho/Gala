@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Galla
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Save your favorite artists and artworks
 
-## Available Scripts
+Galla is a web application where you can save information on your favorite artists and their artworks. Each artwork will have information saved about the piece such as medium and location. Your image of the artwork will come in a card with a notes section on why you like the artwork. The homepage will show a carousel of your saved art. The Artists tab will show artists added by other users and give you the option to save one of their artworks into your own collection. 
 
-In the project directory, you can run:
+This application was made with a Ruby on rails API backend and a React js frontend, aided by Redux toolkit used for state manangement across the application.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Fork and Clone
+* Fork by clicking on the "Fork" button above the About section and then press the green "Create fork" button on the subsequent page.
+* Clone by pressing the green "Code" button and then selecting SSH. Copy the SSH address, open your terminal,  and then type in command ```git clone``` followed by pasting the SSH you just copied. 
+* Change directory into the new file you just created and then install packages with ```npm install --prefix client``` and ```bundle install```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Run rails server with ```rails s``` or ```rails server```
+* In a new terminal, run the frontend development server with ```npm start --prefix client```
+* You can then create your own account and start uploading artists and artworks you like or you can explore the usability by logging into a trial account with the email ```user1@abc.com``` and password ```password1```

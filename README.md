@@ -11,7 +11,7 @@ This application was made with a Ruby on rails API backend and a React js fronte
 * Fork and Clone
 * Fork by clicking on the "Fork" button above the About section and then press the green "Create fork" button on the subsequent page.
 * Clone by pressing the green "Code" button and then selecting SSH. Copy the SSH address, open your terminal,  and then type in command ```git clone``` followed by pasting the SSH you just copied. 
-* Change directory into the new file you just created and then install packages with ```npm install``` and ```bundle install```
+* Change directory into the new file you just created and then install packages with ```npm install --prefix client``` and ```bundle install```
 
 
 ## Usage
