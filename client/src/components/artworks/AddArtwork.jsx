@@ -42,7 +42,6 @@ function AddArtwork() {
         body: "",
         artwork_id: newArt.id
       }
-      // const userArtistIds = userArtists
       dispatch(addNote(blankNote))
       dispatch(addArtworkToUser(newArt))
       dispatch(resetArtworkObj())
@@ -51,8 +50,8 @@ function AddArtwork() {
         dispatch(addArtistToUser(currentArtist))
       }
     } 
-
   },[newArt])
+
   useEffect(() => {
     if(newNote) {
       dispatch(addNoteToUser(newNote))
@@ -113,7 +112,7 @@ function AddArtwork() {
             onChange={(e) => setFormData({...formData, location: e.target.value})}
             />
         </Form.Group>
-        <Button onClick={handleSubmit}>Add art piece</Button>
+        <Button type='submit'>Add art piece</Button>
       </Form>
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
       </Container>

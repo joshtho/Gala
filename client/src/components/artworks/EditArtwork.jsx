@@ -93,7 +93,8 @@ function EditArtwork() {
             onChange={(e) => setFormData({...formData, location: e.target.value})}
           />
         </Form.Group>
-        <Button onClick={handleSubmit}>Edit art piece</Button>
+        <br></br>
+        <Button type='submit'>Edit art piece</Button>
       </Form>
       {errors ? 
       errors.map((error, index) => (
@@ -101,7 +102,13 @@ function EditArtwork() {
         )) 
         : ""}
       </Container>
-      <Button onClick={() => {navigate(`/artworks/${formData.artist.id}`)}} >Cancel</Button>
+      <br></br>
+      <Button 
+      onClick={() => {navigate(`/artworks/${formData.artist.id}`)}} 
+      variant='outline-danger'
+      >
+        Cancel
+      </Button>
     </div>
   )
 }

@@ -74,7 +74,7 @@ function AddArtist() {
             onChange={(e) => setFormData({...formData, image: e.target.value})}
             />
         </Form.Group>
-        <Button onClick={handleSubmit} >Add artist</Button>
+        <Button type='submit' >Add artist</Button>
       </Form>
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
       

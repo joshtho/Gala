@@ -84,7 +84,11 @@ function EditArtist() {
             onChange={(e) => setFormData({...formData, image: e.target.value})}
             />
         </Form.Group>
-        <Button onClick={handleSubmit} >Edit artist info</Button>
+        <br></br>
+        <Button type='submit' >Edit artist info</Button>
+        <br></br>
+        <br></br>
+        <Button variant='outline-danger' onClick={() => {navigate(`/artists`)}}>Cancel</Button>
       </Form>
       {errors ? 
         errors.map((error, index) => (
