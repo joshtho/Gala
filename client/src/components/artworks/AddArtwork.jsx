@@ -20,7 +20,6 @@ function AddArtwork() {
   const errors = useSelector(state => state.artwork.errors)
   const newArt = useSelector(state => state.artwork.artworkObj)
   const newNote = useSelector(state => state.notes.noteObj)
-  
   const formObj = {
     title: "",
     image: "", 
@@ -29,7 +28,6 @@ function AddArtwork() {
     artist_id: artistId
   }
   const [formData, setFormData] = useState(formObj)
-  
   
   function handleSubmit(e) {
     e.preventDefault()
@@ -72,7 +70,7 @@ function AddArtwork() {
 
       <Container>
 
-      <h1>Add an Art piece!</h1>
+      <h1>Add an Art piece</h1>
       <h3>Artist: {currentArtist.name}</h3>  
       
       <Form onSubmit={handleSubmit}>

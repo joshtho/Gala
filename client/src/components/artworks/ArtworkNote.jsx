@@ -41,12 +41,13 @@ function ArtworkNote({note}) {
             <Accordion.Body>
                 <form onSubmit={handleSubmit}>
                     <textarea 
+                    required
                     placeholder='Add a note about this piece...'
                     value={textData.body} 
                     onChange={(e) => setTextData({...textData, body: e.target.value})}></textarea>
                     <br></br>
                     <ButtonGroup aria-label="Third group">
-                        <Button onClick={handleSubmit}>Save</Button>
+                        <Button type='submit'>Save</Button>
                     </ButtonGroup>
                 </form>
 

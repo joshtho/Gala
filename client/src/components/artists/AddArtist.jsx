@@ -4,12 +4,12 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/esm/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addNewArtist, clearArtistErrors, resetArtistObj } from '../../features/artistsSlice'
-import { addArtistToUser } from '../../features/sessionSlice'
+import { addNewArtist, clearArtistErrors } from '../../features/artistsSlice'
 
 function AddArtist() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const initialObj = {
     name: '',
     description: '',
@@ -27,9 +27,7 @@ function AddArtist() {
     
   useEffect(() => {
     if (newArtist) {
-      dispatch(addArtistToUser(newArtist))
       navigate(`/artworks/add/${newArtist.id}`)
-      dispatch(resetArtistObj())
       dispatch(clearArtistErrors())
       setFormData(initialObj)
     }
