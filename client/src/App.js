@@ -47,6 +47,7 @@ if (loading === "loading") {
     <div className="App" >
       <Router>
         <NavBar />
+        {loggedIn ?
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
@@ -58,8 +59,16 @@ if (loading === "loading") {
           <Route path="/artworks/:id" element={<ArtworkList />} />
           <Route path="/artworks/add/:id" element={<AddArtwork />} />
           <Route path="/artworks/edit/:id" element={<EditArtwork />} />
-
         </Routes>
+        : 
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+        
+        }
+
       </Router>
     </div>
   );
