@@ -19,24 +19,32 @@ function AddArtist() {
   const [formData, setFormData] = useState(initialObj)
   const newArtist = useSelector(state => state.artists.artistObj)
   const errors = useSelector(state => state.artists.errors)
-  const [isImage, setIsImage] = useState(null)
+  
   const [imgError, setImgError] = useState('')
+
+  const checkImageAndSubmit = path =>
+    new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({path, status: 'ok'});
+        dispatch(addNewArtist(formData))
+      }
+      img.onerror = () => {
+        resolve({path, status: 'error'});
+        setImgError("Must be usable image url")
+      }
+        
+      img.src = path;
+    });
+
+  if(imgError) {
+    setTimeout(() => setImgError('') ,3000)
+  }
   
   function handleSubmit(e) {
     e.preventDefault()
-    checkImage(formData.image)
+    checkImageAndSubmit(formData.image)
   }
-    
-  
-  useEffect(() => {
-    if(isImage){
-      dispatch(addNewArtist(formData))
-    } else if(isImage === false) {
-      setImgError("Must be usable image url")
-    } else {}
-
-  },[isImage])
-    
   useEffect(() => {
     if (newArtist) {
       navigate(`/artworks/add/${newArtist.id}`)
@@ -51,25 +59,7 @@ function AddArtist() {
     }
   },[errors])
 
-  if(imgError) {
-    setTimeout(() => setImgError('') ,3000)
-  }
-
-  const checkImage = path =>
-  new Promise(resolve => {
-    const img = new Image();
-    img.onload = () => {
-      resolve({path, status: 'ok'});
-      setIsImage(true)
-    }
-    img.onerror = () => {
-      resolve({path, status: 'error'});
-      setIsImage(false)
-    }
     
-    img.src = path;
-  });
-
   return (
     <div>
       <h1>Add a new artist</h1>

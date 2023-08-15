@@ -24,10 +24,31 @@ function EditArtwork() {
     setFormData(artworkData)
   },[artworkData])
         
-  function handleSubmit(e) {
-    e.preventDefault()
-    dispatch(updateArtwork({formData, artworkId}))
-  }
+  const [imgError, setImgError] = useState('')
+
+    const checkImageAndSubmit = path =>
+    new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({path, status: 'ok'});
+        dispatch(updateArtwork({formData, artworkId}))
+      }
+      img.onerror = () => {
+        resolve({path, status: 'error'});
+        setImgError("Must be usable image url")
+      }
+      
+      img.src = path;
+    });
+
+    if(imgError) {
+      setTimeout(() => setImgError('') ,3000)
+    }
+    
+    function handleSubmit(e) {
+      e.preventDefault()
+      checkImageAndSubmit(formData.image)
+    }
 
   useEffect(() => {
     if (editedArtwork) {
@@ -101,6 +122,7 @@ function EditArtwork() {
         <p key={index} style={{color: "red"}}>{error}</p>
         )) 
         : ""}
+        {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
       </Container>
       <br></br>
       <Button 

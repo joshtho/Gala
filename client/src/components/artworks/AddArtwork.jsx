@@ -28,11 +28,32 @@ function AddArtwork() {
     artist_id: artistId
   }
   const [formData, setFormData] = useState(formObj)
-  
-  function handleSubmit(e) {
-    e.preventDefault()
-    dispatch(addNewArtwork(formData))
-  }
+
+  const [imgError, setImgError] = useState('')
+
+    const checkImageAndSubmit = path =>
+    new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({path, status: 'ok'});
+        dispatch(addNewArtwork(formData))
+      }
+      img.onerror = () => {
+        resolve({path, status: 'error'});
+        setImgError("Must be usable image url")
+      }
+      
+      img.src = path;
+    });
+
+    if(imgError) {
+      setTimeout(() => setImgError('') ,3000)
+    }
+    
+    function handleSubmit(e) {
+      e.preventDefault()
+      checkImageAndSubmit(formData.image)
+    }
   
   useEffect(() => {
     if(newArt) {
@@ -112,7 +133,9 @@ function AddArtwork() {
         </Form.Group>
         <Button type='submit'>Add art piece</Button>
       </Form>
+
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+      {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
       </Container>
        : 
        ""}
