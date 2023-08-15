@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/esm/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addNewArtist, clearArtistErrors } from '../../features/artistsSlice'
+import { addNewArtist, clearArtistErrors, resetArtistObj } from '../../features/artistsSlice'
 
 function AddArtist() {
   const dispatch = useDispatch()
@@ -50,6 +50,7 @@ function AddArtist() {
       navigate(`/artworks/add/${newArtist.id}`)
       dispatch(clearArtistErrors())
       setFormData(initialObj)
+      dispatch(resetArtistObj())
     }
   },[newArtist])
 

@@ -15,7 +15,7 @@ function LoginPage() {
         username: "",
         password: ""
     })
-    console.log(loggedIn)
+
     function handleLoginSubmit(e) {
       e.preventDefault()
       dispatch(loginUser(loginData))
