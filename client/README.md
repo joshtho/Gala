@@ -1,4 +1,4 @@
-# Galla
+# Gala
 
 ## Save your favorite artists and artworks
 

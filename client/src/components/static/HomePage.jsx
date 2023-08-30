@@ -25,7 +25,7 @@ function HomePage() {
           </Carousel>
           :
           <div>
-          <h1>Galla</h1>
+          <h1>Gala</h1>
           <img alt='Home' src='https://media.istockphoto.com/id/1218961153/photo/art-museum.jpg?s=612x612&w=0&k=20&c=9fK54fu1mjzFjDOSqg_jfrMy4Hkp8vsmImB7rLrbhJs='></img>
           <Container>
           <br></br>
