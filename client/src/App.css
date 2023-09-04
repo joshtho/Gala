@@ -6,6 +6,12 @@ body {
   background-size: cover;
 
 }
+.carousel-control-prev-icon:hover {
+  background-color: #222;
+}
+.carousel-control-next-icon:hover {
+  background-color: #222;
+}
 
 .dropdown-menu[data-bs-popper].dropdown {
   left: -100px;
@@ -66,7 +72,7 @@ body {
   max-width: 400px;
   padding: 1rem;
   text-align: center;
-  background-color: #e2e1df;
+  background-color: #f4f7f6;
   border-radius: .25rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 2);
   color: #222;
