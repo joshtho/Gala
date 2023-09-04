@@ -2,9 +2,12 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../features/sessionSlice';
+import { useState } from 'react';
 
 
 
@@ -12,6 +15,7 @@ function NavBar() {
 const dispatch = useDispatch()
 const navigate = useNavigate()
 const user = useSelector(state => state.user.entities)
+const [showModal, setShowModal] = useState(false);
   
 function handleLogout() {
   dispatch(logoutUser())
@@ -38,16 +42,34 @@ return (
           </Navbar.Brand>
           <Dropdown >
             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              
             </Dropdown.Toggle>
+              
 
             <Dropdown.Menu className='dropdown' >
-              <Dropdown.Item className='button' onClick={handleLogout}>Logout</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item className='button' onClick={() => setShowModal(true)}>Logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           </Nav>
+
+          <Modal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          backdrop="static"
+          keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Logout?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Are you sure you want to logout?
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowModal(false)}>
+                Go back
+              </Button>
+              <Button variant="danger" onClick={handleLogout}>Logout</Button>
+            </Modal.Footer>
+          </Modal>
         </Container>
       </Navbar>
     
