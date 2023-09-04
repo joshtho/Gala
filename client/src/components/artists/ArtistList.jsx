@@ -22,7 +22,8 @@ function ArtistList() {
     
   return (
     <div >
-      <h1>Choose an Artist</h1>
+      <br></br>
+      <h1 style={{color:'white'}}>Choose an Artist</h1>
       <Container className='card-grid'>
         { artists ?
         artists.map(artist => (

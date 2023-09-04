@@ -1,6 +1,7 @@
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Dropdown from 'react-bootstrap/Dropdown'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../features/sessionSlice';
@@ -23,20 +24,29 @@ function handleLogout() {
 return (
     <>
     {user && user.id ?
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar className='nav-font' >
         <Container>
           <Link to='/' style={{textDecoration: "none"}}>
-            <Navbar.Brand >Galla</Navbar.Brand>
+            <Navbar.Brand >Gala</Navbar.Brand>
           </Link>
             <Nav.Link as={Link} to='/artists' >Artist List</Nav.Link>
             <Nav.Link as={Link} to={`/artists/${user.id}`} >My Artists</Nav.Link>
             
           <Nav className="ml-auto">
-          <Navbar.Text >
+          <Navbar.Brand >
             Welcome: {user.username}
-          </Navbar.Text>
-          
-          <Nav.Link onClick={handleLogout} className='button'>Logout</Nav.Link>
+          </Navbar.Brand>
+          <Dropdown >
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu className='dropdown' >
+              <Dropdown.Item className='button' onClick={handleLogout}>Logout</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           </Nav>
         </Container>
       </Navbar>
@@ -45,7 +55,7 @@ return (
     <Navbar bg="light" data-bs-theme="light">
         <Container>
           <Link to='/' style={{textDecoration: "none"}}>
-            <Navbar.Brand >Galla</Navbar.Brand>
+            <Navbar.Brand >Gala</Navbar.Brand>
           </Link>
           <Nav className="me-auto">
               <Nav.Link as={Link} to='/signup' >Signup</Nav.Link>

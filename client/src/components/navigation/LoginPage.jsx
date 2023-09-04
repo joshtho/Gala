@@ -38,7 +38,8 @@ function LoginPage() {
     <Container>
 
   <Form onSubmit={handleLoginSubmit} >
-    <h1>Welcome back! Please Login</h1>
+    <h1>Welcome back!</h1>
+    <h1> Please Login</h1>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email</Form.Label>
       <Form.Control 

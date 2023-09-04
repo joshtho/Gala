@@ -33,7 +33,9 @@ function ArtworkTile({artwork}) {
           <Link to={`/artworks/edit/${artwork.id}`}>
             <Button variant="outline-secondary" size="sm">Edit</Button>
           </Link>
-        <Card.Img variant="top" src={artwork.image} />
+          <Link to={`/artworks/view/${artwork.id}`} >
+            <Card.Img variant="top" src={artwork.image} />
+          </Link>
         <Card.Body>
           <ListGroup >
             <h6>Current Location:</h6>
