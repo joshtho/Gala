@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import ArtistTile from './ArtistTile'
 import { Link, useNavigate } from 'react-router-dom'
+import ArtistTile from './ArtistTile'
 import Button from 'react-bootstrap/esm/Button'
 import Container from 'react-bootstrap/esm/Container'
 

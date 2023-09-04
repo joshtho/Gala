@@ -10,7 +10,7 @@ function HomePage() {
   const showArt = artwork.map(artwork => (
     <Carousel.Item key={artwork.id}>
       <img 
-      className='Artwork-Card'
+      className='artwork-card'
       alt={artwork.id}
       src={artwork.image}
       />

@@ -53,7 +53,7 @@ body {
     transform: rotate(360deg);
   }
 }
- .Artwork-Card {
+ .artwork-card {
   height: auto;
   max-height: 600px;
   width: auto;
@@ -122,12 +122,12 @@ home {
   background-image: 'https://static.vecteezy.com/system/resources/thumbnails/003/291/338/small/vintage-frame-ornament-background-free-vector.jpg';
 }
 
-.carousel-inner img {
-  max-width: 450px;
-  width: 100%;
-}
-
 .carousel-inner {
   margin-top: 30px;
   
+}
+
+.view-art {
+  max-width: 600px;
+  width: 100%;
 }
