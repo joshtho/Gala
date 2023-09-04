@@ -21,7 +21,7 @@ function MyArtistList() {
         }
       </Container>
         <Link to={`/artists/add`} >
-          <Button variant="outline-secondary">Add a new artist</Button>
+          <Button className='bottom-btn' variant="outline-secondary">Add a new artist</Button>
         </Link>
     </div>
   )

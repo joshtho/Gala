@@ -23,7 +23,7 @@ function ArtistList() {
   return (
     <div >
       <br></br>
-      <h1 style={{color:'white'}}>Choose an Artist</h1>
+      <h1>Choose an Artist</h1>
       <Container className='card-grid'>
         { artists ?
         artists.map(artist => (
@@ -40,7 +40,7 @@ function ArtistList() {
         }
       </Container>
         <Link to={`/artists/add`} >
-          <Button variant="outline-secondary">Add a new artist</Button>
+          <Button className='bottom-btn' variant="outline-secondary">Add a new artist</Button>
         </Link>
 
     </div>

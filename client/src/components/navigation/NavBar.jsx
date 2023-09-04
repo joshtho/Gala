@@ -19,6 +19,7 @@ const [showModal, setShowModal] = useState(false);
   
 function handleLogout() {
   dispatch(logoutUser())
+  setShowModal(false)
   navigate('/')
 }
   

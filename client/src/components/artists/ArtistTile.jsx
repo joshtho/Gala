@@ -28,10 +28,8 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
   }
 
   return (
-    <div>
+    <>
       {ownedArtist ?
-        <div>
-          <Container className='card-wrap'>
             <Card className='card'>
               <CloseButton onClick={() => setShowModal(true)} />
               <Card.Img variant="top" src={artist.image} />
@@ -58,9 +56,6 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
                   </Dropdown.Menu>
                 </Dropdown>
               </Card.Body>
-            </Card>
-          </Container>
-
           <Modal
           show={showModal}
           onHide={() => setShowModal(false)}
@@ -80,10 +75,11 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
               <Button variant="danger" onClick={handleDelete}>DELETE Artist</Button>
             </Modal.Footer>
           </Modal>
-        </div>
+            </Card>
+        
       :
-        <div>
-          <Container className='card-wrap'>
+        
+          
             <Card className='card'>
               <Card.Img variant="top" src={artist.image} />
               <Card.Body>
@@ -119,10 +115,9 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
                 }
               </Card.Body>
             </Card>
-          </Container>
-        </div>
+        
       }
-    </div>
+    </>
   );
 }
       
