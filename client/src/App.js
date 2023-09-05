@@ -20,6 +20,7 @@ import EditArtist from './components/artists/EditArtist';
 import EditArtwork from './components/artworks/EditArtwork';
 import MyArtistList from './components/artists/MyArtistList';
 import ViewArt from './components/artworks/ViewArt';
+import ViewArtist from './components/artists/ViewArtist';
 
 function App() {
   const loggedIn = useSelector(state => state.user.loggedIn)
@@ -61,6 +62,7 @@ if (loading === "loading") {
           <Route path="/artworks/add/:id" element={<AddArtwork />} />
           <Route path="/artworks/edit/:id" element={<EditArtwork />} />
           <Route path="/artworks/view/:id" element={<ViewArt />} />
+          <Route path="/artists/view/:id" element={<ViewArtist />} />
         </Routes>
         : 
         <Routes>

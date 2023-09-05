@@ -17,17 +17,12 @@ body {
   left: -100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .nav-font {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 300;
   font-size: larger;
 }
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -36,23 +31,7 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-.card-grid container {
-  background-color: #af2424;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+} */
  .artwork-card {
   height: auto;
   max-height: 600px;
@@ -64,14 +43,13 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 2);
   color: #222;
   flex: 0 0 100%;
-  
- }
+  }
 
  .card.card {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   height: 100%;
-  max-height: 100%;
+  max-height: 1000px;
   padding: 1rem;
   text-align: center;
   background-color: #f4f7f6;
@@ -118,16 +96,12 @@ h1 {
   font-family: 'Times', Tahoma, Geneva, Verdana, sans-serif, Arial, sans-serif;
 }
 
-home {
-  background-image: 'https://static.vecteezy.com/system/resources/thumbnails/003/291/338/small/vintage-frame-ornament-background-free-vector.jpg';
-}
-
 .carousel-inner {
   margin-top: 30px;
   
 }
 
 .view-art {
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
 }

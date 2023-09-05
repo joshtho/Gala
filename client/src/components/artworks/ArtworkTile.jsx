@@ -29,12 +29,16 @@ function ArtworkTile({artwork}) {
   return (
     <Card className='card'>
       <CloseButton onClick={handleDelete} />
-        <h2>{artwork.title}</h2>
+        <h4>{artwork.title}</h4>
           <Link to={`/artworks/edit/${artwork.id}`}>
             <Button variant="outline-secondary" size="sm">Edit</Button>
           </Link>
           <Link to={`/artworks/view/${artwork.id}`} >
-            <Card.Img variant="top" src={artwork.image} />
+            <Card.Img 
+            title='Click here to see Artwork' 
+            variant="top" 
+            src={artwork.image} 
+            />
           </Link>
         <Card.Body>
           <ListGroup >

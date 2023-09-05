@@ -9,7 +9,7 @@ const navigate = useNavigate()
 const artId = parseInt(params.id)
 const art = useSelector(state => state.user.entities.artworks)
 const currentArtwork = art.find(artwork => artwork.id === artId)
-console.log(currentArtwork)
+
 if (!currentArtwork) {
     return <div>Loading...</div>
 }

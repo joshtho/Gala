@@ -32,12 +32,21 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
       {ownedArtist ?
             <Card className='card'>
               <CloseButton onClick={() => setShowModal(true)} />
-              <Card.Img variant="top" src={artist.image} />
+              <Link to={`/artists/view/${artist.id}`} >
+              <Card.Img 
+              variant="top" 
+              src={artist.image} 
+              title='Click here to view Artist Info'
+              />
+              </Link>
               <Card.Body>
                 <Card.Title>{artist.name}</Card.Title>
-                <Card.Text>{artist.description}</Card.Text>
-                <Dropdown>
-                  <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                {/* <Card.Text>{artist.description}</Card.Text> */}
+                <Dropdown  >
+                  <Dropdown.Toggle 
+                  variant="outline-secondary" 
+                  id="dropdown-basic"
+                  >
                     Select
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -81,10 +90,13 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
         
           
             <Card className='card'>
-              <Card.Img variant="top" src={artist.image} />
+              <Link to={`/artists/view/${artist.id}`} >
+                <Card.Img variant="top" src={artist.image} />
+              </Link>
+
               <Card.Body>
                 <Card.Title>{artist.name}</Card.Title>
-                <Card.Text>{artist.description}</Card.Text>
+                {/* <Card.Text>{artist.description}</Card.Text> */}
                 {ownedArtist ? 
                   <Dropdown>
                     <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
