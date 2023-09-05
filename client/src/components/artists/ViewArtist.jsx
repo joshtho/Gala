@@ -63,9 +63,10 @@ function ViewArtist() {
                   variant="success" 
                   onClick={() => navigate(`/artworks/add/${currentArtist.id}`)}
                   >
-                    Add Artist?
+                    Add Artwork to add artist
                   </Button>
                 }
+                <br></br>
                 <br></br>
       <Button 
       onClick={() => navigate(-1)} 

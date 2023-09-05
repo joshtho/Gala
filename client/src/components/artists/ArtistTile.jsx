@@ -58,9 +58,15 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
                     </Dropdown.Item>
                     <Dropdown.Item 
                     as={Link} 
+                    to={`/artists/view/${artist.id}`}
+                    >
+                      View Artist
+                    </Dropdown.Item>
+                    <Dropdown.Item 
+                    as={Link} 
                     to={`/artists/edit/${artist.id}`}
                     >
-                      Edit info
+                      Edit
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
@@ -91,7 +97,11 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
           
             <Card className='card'>
               <Link to={`/artists/view/${artist.id}`} >
-                <Card.Img variant="top" src={artist.image} />
+                <Card.Img 
+                variant="top" 
+                src={artist.image} 
+                title='Click here to see artist info'
+                />
               </Link>
 
               <Card.Body>
@@ -120,9 +130,9 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
                 :
                   <Button 
                   variant="success" 
-                  onClick={newArtistClick}
+                  onClick={() => navigate(`/artists/view/${artist.id}`)}
                   >
-                    Add Artist?
+                    Artist Info
                   </Button>
                 }
               </Card.Body>

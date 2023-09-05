@@ -131,11 +131,18 @@ function AddArtwork() {
             onChange={(e) => setFormData({...formData, location: e.target.value})}
             />
         </Form.Group>
+        <br></br>
         <Button type='submit'>Add art piece</Button>
       </Form>
-
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
       {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
+      <br/>
+      <Button 
+      onClick={() => navigate(-1)} 
+      className='bottom-btn' 
+      variant='secondary'>
+        {'<'}
+      </Button>
       </Container>
        : 
        ""}

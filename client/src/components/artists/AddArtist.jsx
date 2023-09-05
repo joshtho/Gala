@@ -102,6 +102,12 @@ function AddArtist() {
       </Form>
       {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
       {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
+      <Button 
+      onClick={() => navigate(-1)} 
+      className='bottom-btn' 
+      variant='secondary'>
+        {'<'}
+      </Button>
             </Container>
     </div>
   )
