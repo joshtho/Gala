@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
+import Dropdown from 'react-bootstrap/Dropdown'
 import Container from 'react-bootstrap/esm/Container'
 import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 
 function ViewArtist() {
     const params = useParams()
@@ -37,6 +38,35 @@ function ViewArtist() {
         <p>{currentArtist.description}</p> 
       </Container>
       <br/>
+      {ownedArtist ? 
+                  <Dropdown>
+                    <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                      Select
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item 
+                      as={Link} 
+                      to={`/artworks/${currentArtist.id}`}
+                      >
+                        My collection
+                      </Dropdown.Item>
+                      <Dropdown.Item 
+                      as={Link} 
+                      to={`/artists/edit/${currentArtist.id}`}
+                      >
+                        Edit info
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                :
+                  <Button 
+                  variant="success" 
+                  onClick={() => navigate(`/artworks/add/${currentArtist.id}`)}
+                  >
+                    Add Artist?
+                  </Button>
+                }
+                <br></br>
       <Button 
       onClick={() => navigate(-1)} 
       className='bottom-btn' 
