@@ -12,14 +12,16 @@ function ViewArtist() {
     const currentArtist = artists.find(artist => artist.id === artistId)
     const userArtists = useSelector(state => state.user.entities.artists)
     const [ownedArtist, setOwnedArtist] = useState(false)
+    console.log(ownedArtist)
 
     useEffect(() => {
       const artistArray = userArtists.map(artist => artist.id)
-      if (artistArray.includes(currentArtist.id)) {
+      if (currentArtist && artistArray.includes(currentArtist.id)) {
         setOwnedArtist(true)
+      } else {
+        
       }
     },[])
-    console.log(ownedArtist)
     
   if (!currentArtist) {
     return <div>Loading...</div>
