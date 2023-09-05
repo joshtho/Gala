@@ -95,10 +95,13 @@ body {
 h1 {
   font-family: 'Times', Tahoma, Geneva, Verdana, sans-serif, Arial, sans-serif;
 }
+p {
+  font-family: 'Times', Tahoma, Geneva, Verdana, sans-serif, Arial, sans-serif;
+  font-size: large;
+}
 
 .carousel-inner {
   margin-top: 30px;
-  
 }
 
 .view-art {
