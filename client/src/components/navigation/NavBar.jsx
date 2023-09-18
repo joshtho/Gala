@@ -88,59 +88,7 @@ return (
       </Navbar>
      
     }
-    {/* {user && user.id ?
-    <Nav>
-      <Nav.Item>
-        <Link to='/'>
-          <Button>Home</Button>
-        </Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Link to='/artists'>
-          <Button>Artists</Button>
-        </Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Button onClick={handleLogout}>Logout</Button>
-      </Nav.Item>
-      Welcome {user.username}
-    </Nav>
-    :
-    <Nav activeKey="/">
-            <Nav.Item>
-                <Link to="/">
-                    <Button>Home</Button>
-                </Link>
-            </Nav.Item>
-            
-            <Nav.Item>
-                <Link to="/signup">
-                    <Button>Signup</Button>
-                </Link>
-            </Nav.Item>
-            
-            <Nav.Item>
-                <Link to="/login">
-                    <Button>Login</Button>
-                </Link>
-            </Nav.Item>
-        </Nav>
-    } */}
     </>
-    // <Nav
-    //   activeKey="/home"
-    //   onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-    // >
-        
-    //   <Nav.Item>
-    //     <Nav.Link eventKey="link-2">Link</Nav.Link>
-    //   </Nav.Item>
-    //   <Nav.Item>
-    //     <Nav.Link eventKey="disabled" disabled>
-    //       Disabled
-    //     </Nav.Link>
-    //   </Nav.Item>
-    // </Nav>
   );
 }
 

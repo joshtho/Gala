@@ -34,6 +34,7 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
               <CloseButton onClick={() => setShowModal(true)} />
               <Link to={`/artists/view/${artist.id}`} >
               <Card.Img 
+              className='artist-image'
               variant="top" 
               src={artist.image} 
               title='Click here to view Artist Info'
@@ -42,14 +43,15 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
               <Card.Body>
                 <Card.Title>{artist.name}</Card.Title>
                 {/* <Card.Text>{artist.description}</Card.Text> */}
-                <Dropdown  >
+                <Dropdown className='box' >
                   <Dropdown.Toggle 
+                  
                   variant="outline-secondary" 
                   id="dropdown-basic"
                   >
                     Select
                   </Dropdown.Toggle>
-                  <Dropdown.Menu>
+                  <Dropdown.Menu className='box'>
                     <Dropdown.Item 
                     as={Link} 
                     to={`/artworks/${artist.id}`}
