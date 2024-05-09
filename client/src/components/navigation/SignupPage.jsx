@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
+import Card from 'react-bootstrap/esm/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearSessionErrors, signupUser } from '../../features/sessionSlice';
@@ -36,7 +36,7 @@ function SignupPage() {
 
 
   return (
-    <Container>
+    <Card style={{margin: "auto", marginTop: "5%"}}>
 
   <Form onSubmit={handleSignupSubmit} >
     <h1>Signup here</h1>
@@ -70,7 +70,7 @@ function SignupPage() {
   errors.map((error, index) => 
   (<p key={index} style={{color: "red"}}>{error}</p>))
   : ""}
-    </Container>
+    </Card>
   );
 }
 

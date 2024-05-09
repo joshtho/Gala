@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearSessionErrors, loginUser } from '../../features/sessionSlice';
-import Container from 'react-bootstrap/esm/Container';
+import Card from 'react-bootstrap/esm/Card';
 
 function LoginPage() {
     const navigate = useNavigate()
@@ -35,7 +35,7 @@ function LoginPage() {
     },[errors])
 
   return (
-    <Container>
+    <Card style={{margin: "auto", marginTop: "5%"}}>
 
   <Form onSubmit={handleLoginSubmit} >
     <h1>Welcome back!</h1>
@@ -70,7 +70,7 @@ function LoginPage() {
   (<p key={index} style={{color: "red"}}>{error}</p>))
   : ""}
 </Form>
-    </Container>
+    </Card>
   );
 }
 
