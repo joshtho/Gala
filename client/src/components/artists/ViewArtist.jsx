@@ -34,7 +34,7 @@ function ViewArtist() {
         <h4>{currentArtist.name}</h4>
         <img className='artwork-card' src={currentArtist.image}/>
       </Container>
-      <Container >
+      <Container style={{background: "white"}} >
         <p>{currentArtist.description}</p> 
       </Container>
       <br/>

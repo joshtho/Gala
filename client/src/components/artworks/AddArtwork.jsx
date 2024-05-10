@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/esm/Container'
+import Card from 'react-bootstrap/esm/Card'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
@@ -89,7 +89,7 @@ function AddArtwork() {
     <div>
       {currentArtist ?
 
-      <Container>
+      <Card style={{margin: "auto", marginTop: "5%"}}>
 
       <h1>Add an Art piece</h1>
       <h3>Artist: {currentArtist.name}</h3>  
@@ -143,7 +143,7 @@ function AddArtwork() {
       variant='secondary'>
         {'<'}
       </Button>
-      </Container>
+      </Card>
        : 
        ""}
     </div>

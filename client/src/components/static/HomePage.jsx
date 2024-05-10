@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 function HomePage() {
   const loggedIn = useSelector(state => state.user.loggedIn)
   const artwork = useSelector(state => state.user.entities.artworks)
-  
+  console.log(artwork)
   const showArt = artwork.map(artwork => (
     <Carousel.Item key={artwork.id}>
       <img 

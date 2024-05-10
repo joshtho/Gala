@@ -26,7 +26,7 @@ donatello = Artist.create(
     {
         name: "Donatello",
         description: "An Italian sculptor of the Renaissance period. Born in Florence, he studied classical sculpture and used his knowledge to develop an Early Renaissance style of sculpture.",
-        image: "https://www.donatello.net/images/donatello.jpeg"
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/95/Cinq_ma%C3%AEtres_de_la_Renaissance_florentine_Mus%C3%A9e_du_Louvre_Peintures_INV_267_-_Donatello.jpg"
 
     }
 )
@@ -132,7 +132,7 @@ persistence = Artwork.create(
 swans = Artwork.create(
     {
         title: "Swans Reflecting Elephants",
-        image: "https://www.dalipaintings.com/images/paintings/swans-reflecting-elephants.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/en/f/f6/Swans_reflecting_elephants.jpg",
         medium: "Oil paint",
         location: "private collection",
         artist_id: salvador.id,
