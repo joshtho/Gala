@@ -91,59 +91,63 @@ function AddArtwork() {
 
       <Card style={{margin: "auto", marginTop: "5%"}}>
 
-      <h1>Add an Art piece</h1>
-      <h3>Artist: {currentArtist.name}</h3>  
-      
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Title of work</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Title of art piece..."
-            value={formData.title}
-            onChange={(e) => setFormData({...formData, title: e.target.value})}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Art Piece image</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Please add an image address"
-            value={formData.image}
-            onChange={(e) => setFormData({...formData, image: e.target.value})}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Medium ie: Oil on Canvas, Photography, ect..</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Medium for the piece..."
-            value={formData.medium}
-            onChange={(e) => setFormData({...formData, medium: e.target.value})}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Artworks current location</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Artwork is currently located..."
-            value={formData.location}
-            onChange={(e) => setFormData({...formData, location: e.target.value})}
+        <h1>Add an Art piece</h1>
+        <h3>Artist: {currentArtist.name}</h3>  
+        
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Title of work</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Title of art piece..."
+              value={formData.title}
+              onChange={(e) => setFormData({...formData, title: e.target.value})}
             />
-        </Form.Group>
-        <br></br>
-        <Button type='submit'>Add art piece</Button>
-      </Form>
-      {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
-      {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
-      <br/>
-      <Button 
-      onClick={() => navigate(-1)} 
-      className='bottom-btn' 
-      variant='secondary'>
-        {'<'}
-      </Button>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Art Piece image</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Please add an image address"
+              value={formData.image}
+              onChange={(e) => setFormData({...formData, image: e.target.value})}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Medium ie: Oil on Canvas, Photography, ect..</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Medium for the piece..."
+              value={formData.medium}
+              onChange={(e) => setFormData({...formData, medium: e.target.value})}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Artworks current location</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Artwork is currently located..."
+              value={formData.location}
+              onChange={(e) => setFormData({...formData, location: e.target.value})}
+              />
+          </Form.Group>
+          <br></br>
+          <Button type='submit'>Add art piece</Button>
+        </Form>
+        
+        {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+        {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
+        <br/>
+        <div>
+          <Button 
+          onClick={() => navigate(-1)} 
+          className='bottom-btn' 
+          variant='secondary'>
+            {'<'}
+          </Button>
+        </div>
       </Card>
+
        : 
        ""}
     </div>

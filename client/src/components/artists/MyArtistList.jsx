@@ -10,7 +10,7 @@ function MyArtistList() {
 
   return (
     <div>
-      <h1>My Artists</h1>
+      {/* <h1>My Artists</h1> */}
       <Container className='card-grid'>
         { userArtists ?
         userArtists.map(artist => (
