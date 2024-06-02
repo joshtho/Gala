@@ -72,9 +72,9 @@ function EditArtwork() {
 
   return (
     <div>
+      <h1>Edit an Art piece</h1>
       <Card className='mx-auto'>
 
-      <h1>Edit an Art piece!</h1>
       <h2 className='zen-font'>Artist: {formData.artist.name}</h2>
       
       <Form onSubmit={handleSubmit}>

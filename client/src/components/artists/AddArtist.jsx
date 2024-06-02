@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/esm/Container'
+import Card from 'react-bootstrap/esm/Card'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addNewArtist, clearArtistErrors, resetArtistObj } from '../../features/artistsSlice'
@@ -64,53 +64,53 @@ function AddArtist() {
   return (
     <div>
       <h1>Add a new artist</h1>
-      <Container>
-
-      <Form onSubmit={handleSubmit} >
-        <Form.Group>
-          <Form.Label>Artist's name</Form.Label>
-            <Form.Control 
-            type="text" 
-            placeholder="Please add an artist's name..."
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
-            />
-        </Form.Group>
-        <Form.Group >
-          <Form.Label>Artist's description/summary</Form.Label>
-            <Form.Control 
-            type="text" 
-            placeholder="Please add a short bio or summary..."
-            value={formData.description}
-            onChange={(e) => setFormData({...formData, description: e.target.value})}
-            />
-        </Form.Group>
-        
-        <Form.Group >
-          <Form.Label>Image of the artist</Form.Label>
-            <Form.Control
-            
-            type="text" 
-            placeholder="Please add an image address..."
-            value={formData.image}
-            onChange={(e) => setFormData({...formData, image: e.target.value})}
-            />
-        </Form.Group>
-
-      <br></br>
-        <Button type='submit'>Add artist</Button>
-      </Form>
-      {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
-      {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
-      <Button 
-      onClick={() => navigate(-1)} 
-      className='bottom-btn' 
-      variant='secondary'>
-        {'<'}
-      </Button>
-            </Container>
+      <Card className='mx-auto'>
+        <Form onSubmit={handleSubmit} >
+          <Form.Group>
+            <Form.Label className='zen-font'>Artist's name</Form.Label>
+              <Form.Control 
+              type="text" 
+              placeholder="Please add an artist's name..."
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label className='zen-font'>Artist's description/summary</Form.Label>
+              <Form.Control 
+              type="text" 
+              placeholder="Please add a short bio or summary..."
+              value={formData.description}
+              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              />
+          </Form.Group>
+          
+          <Form.Group >
+            <Form.Label className='zen-font'>Image of the artist</Form.Label>
+              <Form.Control
+              
+              type="text" 
+              placeholder="Please add an image address..."
+              value={formData.image}
+              onChange={(e) => setFormData({...formData, image: e.target.value})}
+              />
+          </Form.Group>
+          <br></br>
+          <Button type='submit'>Add artist</Button>
+          <br></br>
+          <br></br>
+          <Button 
+          onClick={() => navigate(-1)} 
+          className='bottom-btn' 
+          variant='secondary'>
+            {'<'}
+          </Button>
+            {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+            {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
+        </Form>
+      </Card>
     </div>
   )
 }
 
-export default AddArtist
+export default AddArtist;

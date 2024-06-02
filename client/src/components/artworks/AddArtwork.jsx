@@ -87,16 +87,16 @@ function AddArtwork() {
 
   return (
     <div>
+      <h1>Add an Art piece</h1>
       {currentArtist ?
 
-      <Card style={{margin: "auto", marginTop: "5%"}}>
+      <Card className='mx-auto'>
 
-        <h1>Add an Art piece</h1>
-        <h3>Artist: {currentArtist.name}</h3>  
+        <h2 className='zen-font'>Artist: {currentArtist.name}</h2>  
         
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>Title of work</Form.Label>
+            <Form.Label className='zen-font'>Title of work</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Title of art piece..."
@@ -105,7 +105,7 @@ function AddArtwork() {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Art Piece image</Form.Label>
+            <Form.Label className='zen-font'>Art Piece image</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Please add an image address"
@@ -114,7 +114,7 @@ function AddArtwork() {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Medium ie: Oil on Canvas, Photography, ect..</Form.Label>
+            <Form.Label className='zen-font'>Medium ie: Oil on Canvas, Photography, ect..</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Medium for the piece..."
@@ -123,7 +123,7 @@ function AddArtwork() {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Artworks current location</Form.Label>
+            <Form.Label className='zen-font'>Artworks current location</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Artwork is currently located..."
@@ -135,8 +135,6 @@ function AddArtwork() {
           <Button type='submit'>Add art piece</Button>
         </Form>
         
-        {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
-        {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
         <br/>
         <div>
           <Button 
@@ -145,6 +143,8 @@ function AddArtwork() {
           variant='secondary'>
             {'<'}
           </Button>
+            {errors ? errors.map((error, index) => (<p key={index} style={{color: "red"}}>{error}</p>)) : ""}
+            {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
         </div>
       </Card>
 
