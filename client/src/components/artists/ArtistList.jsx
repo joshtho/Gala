@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ArtistTile from './ArtistTile'
 import Button from 'react-bootstrap/esm/Button'
 import Container from 'react-bootstrap/esm/Container'
 
 function ArtistList() {
-  const navigate = useNavigate()
   const artists = useSelector(state => state.artists.entities)  
   
   const initialObj = {
@@ -15,11 +14,7 @@ function ArtistList() {
     image: '',
   }
   const [newArtistData, setNewArtistData] = useState(initialObj)
-    
-  function handleNewArtistClick(id) {
-    navigate(`/artworks/add/${id}`)
-  }
-    
+      
   return (
     <div >
       <br></br>
@@ -30,7 +25,6 @@ function ArtistList() {
             <ArtistTile 
             key={artist.id} 
             artist={artist} 
-            onHandleNewArtistClick={handleNewArtistClick}
             newArtistData={newArtistData}
             setNewArtistData={setNewArtistData}
             />

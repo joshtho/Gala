@@ -3,23 +3,18 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/esm/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/esm/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeArtist, resetArtistObj } from '../../features/artistsSlice';
+import { removeArtist } from '../../features/artistsSlice';
 import CloseButton from 'react-bootstrap/esm/CloseButton';
 import { removeArtistFromUser } from '../../features/sessionSlice';
 import { useState } from 'react';
 
-function ArtistTile({artist, onHandleNewArtistClick}) {
+function ArtistTile({artist}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false);
   const userArtists = useSelector(state => state.user.entities.artists)
   const ownedArtist = userArtists.find(person => person.name === artist.name )
-
-  function newArtistClick() {
-    onHandleNewArtistClick(artist.id)
-  }
 
   function handleDelete() {
     dispatch(removeArtist(artist.id))
@@ -108,7 +103,7 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
 
               <Card.Body>
                 <Card.Title className='zen-font'>{artist.name}</Card.Title>
-                {/* <Card.Text>{artist.description}</Card.Text> */}
+                
                 {ownedArtist ? 
                   <Dropdown>
                     <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">

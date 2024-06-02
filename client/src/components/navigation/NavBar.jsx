@@ -75,7 +75,7 @@ return (
       </Navbar>
     
     : 
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar className='zen-font'>
         <Container>
           <Link to='/' style={{textDecoration: "none"}}>
             <Navbar.Brand >Gala</Navbar.Brand>
