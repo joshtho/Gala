@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { clearArtistErrors, resetArtistObj, updateArtist } from '../../features/artistsSlice'
 import { updateUserArtists } from '../../features/sessionSlice'
-import Container from 'react-bootstrap/esm/Container'
+import Card from 'react-bootstrap/esm/Card'
 
 function EditArtist() {
   const params = useParams()
@@ -73,10 +73,10 @@ function EditArtist() {
   return (
     <div>
       <h1>Edit artist info</h1>
-      <Container>
+      <Card className='mx-auto'>
         <Form onSubmit={handleSubmit} >
           <Form.Group>
-            <Form.Label>Artist's name</Form.Label>
+            <Form.Label className='zen-font'>Artist's name</Form.Label>
               <Form.Control 
               type="text" 
               placeholder="Please add an artist's name..."
@@ -85,7 +85,7 @@ function EditArtist() {
               />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Artist's description/summary</Form.Label>
+            <Form.Label className='zen-font'>Artist's description/summary</Form.Label>
               <Form.Control
               as={"textarea"}
               rows={3} 
@@ -96,7 +96,7 @@ function EditArtist() {
               />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Image of the artist</Form.Label>
+            <Form.Label className='zen-font'>Image of the artist</Form.Label>
               <Form.Control 
               type="text" 
               placeholder="Please add an image address..."
@@ -110,7 +110,7 @@ function EditArtist() {
           <br></br>
           <Button variant='outline-danger' onClick={() => {navigate(`/artists`)}}>Cancel</Button>
         </Form>
-      </Container>
+      </Card>
       {errors ? 
         errors.map((error, index) => (
           <p key={index} style={{color: "red"}}>{error}</p>

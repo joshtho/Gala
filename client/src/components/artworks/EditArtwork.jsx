@@ -5,7 +5,7 @@ import { clearArtworkErrors, resetArtworkObj, updateArtwork } from '../../featur
 import { updateUserArtwork } from '../../features/sessionSlice'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
-import Container from 'react-bootstrap/esm/Container'
+import Card from 'react-bootstrap/esm/Card'
 
 function EditArtwork() {
   const params = useParams()
@@ -72,14 +72,14 @@ function EditArtwork() {
 
   return (
     <div>
-      <Container>
+      <Card className='mx-auto'>
 
       <h1>Edit an Art piece!</h1>
-        Artist: {formData.artist.name}
+      <h2 className='zen-font'>Artist: {formData.artist.name}</h2>
       
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>Title of work</Form.Label>
+          <Form.Label className='zen-font'>Title of work</Form.Label>
           <Form.Control 
             type="text" 
             placeholder="Title of art piece..."
@@ -88,7 +88,7 @@ function EditArtwork() {
             />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Art Piece image</Form.Label>
+          <Form.Label className='zen-font'>Art Piece image</Form.Label>
           <Form.Control 
             type="text" 
             placeholder="Please add an image address"
@@ -97,7 +97,7 @@ function EditArtwork() {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Medium ie: Oil on Canvas, Photography, ect..</Form.Label>
+          <Form.Label className='zen-font'>Medium ie: Oil on Canvas, Photography, ect..</Form.Label>
           <Form.Control 
             type="text" 
             placeholder="Medium for the piece..."
@@ -106,7 +106,7 @@ function EditArtwork() {
             />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Artworks current location</Form.Label>
+          <Form.Label className='zen-font'>Artworks current location</Form.Label>
           <Form.Control 
             type="text" 
             placeholder="Artwork is currently located..."
@@ -116,14 +116,13 @@ function EditArtwork() {
         </Form.Group>
         <br></br>
         <Button type='submit'>Edit art piece</Button>
-      </Form>
       {errors ? 
       errors.map((error, index) => (
         <p key={index} style={{color: "red"}}>{error}</p>
         )) 
         : ""}
         {imgError ? <p style={{color: "red"}}>{imgError}</p> : ""}
-      </Container>
+      <br></br>
       <br></br>
       <Button 
       onClick={() => {navigate(`/artworks/${formData.artist.id}`)}} 
@@ -131,6 +130,8 @@ function EditArtwork() {
       >
         Cancel
       </Button>
+      </Form>
+        </Card>
     </div>
   )
 }
