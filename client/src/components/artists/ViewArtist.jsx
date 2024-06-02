@@ -29,9 +29,10 @@ function ViewArtist() {
   }
   return (
     <Container>
+      <br></br>
       <Container>
+        <h1>{currentArtist.name}</h1>
         <br/>
-        <h4>{currentArtist.name}</h4>
         <img className='artwork-card' src={currentArtist.image}/>
       </Container>
       <Container style={{background: "white"}} >

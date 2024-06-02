@@ -65,6 +65,9 @@ function LoginPage() {
   <Button variant="primary" type="submit">
     Submit
   </Button>
+  <br></br>
+  <br></br>
+  <Button onClick={() => setLoginData({username: "user1@abc.com", password: 'password1'})}>Trial User</Button>
   {errors ? 
   errors.map((error, index) => 
   (<p key={index} style={{color: "red"}}>{error}</p>))

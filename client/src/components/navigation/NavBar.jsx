@@ -29,7 +29,7 @@ function handleLogout() {
 return (
     <>
     {user && user.id ?
-    <Navbar className='nav-font' >
+    <Navbar className='zen-font' >
         <Container>
           <Link to='/' style={{textDecoration: "none"}}>
             <Navbar.Brand >Gala</Navbar.Brand>

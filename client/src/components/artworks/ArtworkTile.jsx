@@ -29,7 +29,7 @@ function ArtworkTile({artwork}) {
   return (
     <Card className='card'>
       <CloseButton onClick={handleDelete} />
-        <h4>{artwork.title}</h4>
+        <h4 className='zen-font'>{artwork.title}</h4>
           <Link to={`/artworks/edit/${artwork.id}`}>
             <Button variant="outline-secondary" size="sm">Edit</Button>
           </Link>

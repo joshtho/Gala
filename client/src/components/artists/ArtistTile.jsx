@@ -41,7 +41,7 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
               />
               </Link>
               <Card.Body>
-                <Card.Title>{artist.name}</Card.Title>
+                <Card.Title className='zen-font'>{artist.name}</Card.Title>
                 {/* <Card.Text>{artist.description}</Card.Text> */}
                 <Dropdown className='box' >
                   <Dropdown.Toggle 
@@ -107,7 +107,7 @@ function ArtistTile({artist, onHandleNewArtistClick}) {
               </Link>
 
               <Card.Body>
-                <Card.Title>{artist.name}</Card.Title>
+                <Card.Title className='zen-font'>{artist.name}</Card.Title>
                 {/* <Card.Text>{artist.description}</Card.Text> */}
                 {ownedArtist ? 
                   <Dropdown>
